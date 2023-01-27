@@ -20,9 +20,13 @@ public class Tower : MonoBehaviour
         return parent.GetComponent<AliveEntity>();
     }
 
-    private void Start()
+    private void Awake()
     {
         parent = transform.parent;
+    }
+
+    private void Start()
+    {
         transform.parent = null;
     }
 

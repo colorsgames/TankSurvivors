@@ -19,15 +19,18 @@ public class Enemy : NPC
         base.Start();
     }
 
-    private void Update()
+    public override void Update()
     {
-        if (!Alive) return;
-        Following(target.position, radiusFollow);
-        tower.SetTarget(target.position);
+        if (Alive)
+        {
+            Following(target.position, radiusFollow);
+            tower.SetTarget(target.position);
 
-        float dist = (target.position - transform.position).magnitude;
-        if (dist < radiusAttack)
-            weapons.StartShooting();
+            float dist = (target.position - transform.position).magnitude;
+            if (dist < radiusAttack)
+                weapons.StartShooting();
+        }
+        base.Update();
     }
 
     public override void Dead()

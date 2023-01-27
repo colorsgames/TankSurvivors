@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class AliveEntity : MonoBehaviour
 {
-    public bool Alive { get { return alive; } }
+    public bool Alive { get { return alive; } set { alive = value; } }
     public int Health { get { return currentHealth; } }
-
+    public Rigidbody2D Rb { get { return rb; } }
+    [HideInInspector]public Tower tower;
     /*    [SerializeField] private int startWeaponId;
         [SerializeField] private int maxHealth;
 
@@ -28,7 +29,6 @@ public class AliveEntity : MonoBehaviour
     }
 
     protected int currentWeaponId;
-    protected Tower tower;
     protected Weapons weapons;
     protected Vector2 movementInput;
 
@@ -46,20 +46,20 @@ public class AliveEntity : MonoBehaviour
 
     bool alive = true;
 
-    public void Awake()
+    public virtual void Awake()
     {
         tower = GetComponentInChildren<Tower>();
+        rb = GetComponent<Rigidbody2D>();
         maxHealth = aliveEntityData.maxHealth;
         speed = aliveEntityData.moveSpeed;
         rotationSpeed = aliveEntityData.rotationSpeed;
         currentHealth = maxHealth;
         weaponData = aliveEntityData.weaponData;
+        currentWeaponId = aliveEntityData.startWeaponId;
     }
 
     public virtual void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        currentWeaponId = aliveEntityData.startWeaponId;
         MaxWeaponId = tower.transform.childCount;
         ChangeWeapon(aliveEntityData.startWeaponId);
     }
@@ -102,6 +102,11 @@ public class AliveEntity : MonoBehaviour
             PopupTextManager.instance.SpawnDamageText(transform.position, ColorType.healing, $"+{value}");
             currentHealth += value;
         }
+    }
+
+    protected void ResetHealth()
+    {
+        currentHealth = maxHealth;
     }
 
     public void ChangeWeapon(int id)

@@ -6,7 +6,6 @@ using UnityEngine;
 public class Player : AliveEntity
 {
     public Vector2 TowerTarget { get { return towerTarget; } }
-    public int AllyCount { get { return allyCount; } }
 
     bool[] bussyAllyPlace = new bool[4];
 
@@ -16,7 +15,6 @@ public class Player : AliveEntity
 
     Vector2 towerTarget;
 
-    int allyCount;
     int oldDamage;
 
     float oldDelay;
@@ -82,16 +80,6 @@ public class Player : AliveEntity
     public void SetFreePlace(int id)
     {
         bussyAllyPlace[id] = false;
-    }
-
-    public void IncreaseAlly()
-    {
-        allyCount++;
-    }
-
-    public void DecreaseAlly()
-    {
-        allyCount--;
     }
 
     public void NextWeapon()

@@ -1295,17 +1295,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a3fa0740fd25944a1dc8a977cd5663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tower: {fileID: 0}
   aliveEntityData: {fileID: 11400000, guid: cdd2f63b1a8f2114cbedb04f6e6284cc, type: 2}
   acceleration: 2
   radiusFollow: 5
-  destroyTime: 1
-  items:
-  - {fileID: 6060253764030184634, guid: 4bad47fa489328e4dbee96b759aaf844, type: 3}
-  - {fileID: 2963349977139637404, guid: c69eee4d1a0bd3c4b882eecdf8e07596, type: 3}
-  - {fileID: 30036801230807614, guid: ce292fe6c9718dc4ab6f5eb239b1ce6a, type: 3}
-  - {fileID: 3967452967850865739, guid: 4542356a4feb10d408b6ba391e27730d, type: 3}
-  - {fileID: 7611809585226515903, guid: 84f99927447533e419212bf7e9149f64, type: 3}
-  spawnItemsCoefficient: 5
+  destroyTime: 0.5
+  items: []
+  spawnItemsCoefficient: 10
   radiusAttack: 12
 --- !u!61 &7462753885941991785
 BoxCollider2D:

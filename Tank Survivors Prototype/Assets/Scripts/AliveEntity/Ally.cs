@@ -19,35 +19,32 @@ public class Ally : NPC
     public override void Start()
     {
         base.Start();
+        print("Pedik");
         player = FindObjectOfType<Player>();
-        player.IncreaseAlly();
+        //player.IncreaseAlly();
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), boxCollider);
         placeId = player.GetFreePlaceID();
         StartFollowing(placeId);
     }
 
-    private void Update()
+    public override void Update()
     {
-        if (!Alive) return;
-        if (following)
+        if (Alive)
         {
-            tower.SetTarget(player.TowerTarget);
-
-            Vector2 fPos = (Vector2)player.transform.position + followTarget;
-            Following(fPos, radiusFollow);
-
-            if (Input.GetMouseButton(0))
+            if (following)
             {
-                weapons.StartShooting();
+                tower.SetTarget(player.TowerTarget);
+
+                Vector2 fPos = (Vector2)player.transform.position + followTarget;
+                Following(fPos, radiusFollow);
+
+                if (Input.GetMouseButton(0))
+                {
+                    weapons.StartShooting();
+                }
             }
         }
-    }
-
-    public override void Dead()
-    {
-        player.DecreaseAlly();
-        player.SetFreePlace(placeId);
-        base.Dead();
+        base.Update();
     }
 
     void StartFollowing(int id)

@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   maxHealth: 5000
-  allyCount: 0
   startWeaponId: 0
   moveSpeed: 500
   rotationSpeed: 20

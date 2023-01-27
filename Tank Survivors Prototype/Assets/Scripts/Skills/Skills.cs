@@ -31,7 +31,6 @@ public abstract class Skills : MonoBehaviour
     private void Awake()
     {
         UpgradeManager.onButtonDown.AddListener(FoundsCheck);
-        GameCurrencyData.IncreaseTotalMoney(1000);
     }
 
     private void Start()
@@ -97,6 +96,5 @@ public abstract class Skills : MonoBehaviour
             priceTMP.color = green;
             InsufficientFunds = false;
         }
-        print("poopa");
     }
 }
