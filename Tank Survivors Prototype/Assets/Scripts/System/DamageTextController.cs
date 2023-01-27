@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using TMPro.EditorUtilities;
+using UnityEngine.Pool;
 
 public class DamageTextController : MonoBehaviour
 {
@@ -25,21 +26,25 @@ public class DamageTextController : MonoBehaviour
 
     [SerializeField] TMP_Text tmp;
 
+    private IObjectPool<DamageTextController> pool;
+
     Vector2 randPos;
 
     float currentTime;
+    float curretLifeTime;
 
     private void Start()
     {
         randPos = new Vector2(Random.Range(xMin, xMax), Random.Range(yMin, yMax));
         randPos = (Vector2)transform.position + randPos;
-        Destroy(gameObject, lifeTime);
+        curretLifeTime = lifeTime;
     }
 
     private void Update()
     {
-        transform.position = Vector2.Lerp(transform.position, randPos, moveSpeed * Time.deltaTime);
+        WhaitingForDeath();
 
+        transform.position = Vector2.Lerp(transform.position, randPos, moveSpeed * Time.deltaTime);
 
         currentTime += Time.deltaTime;
         if (currentTime >= lifeTime / 2)
@@ -54,6 +59,9 @@ public class DamageTextController : MonoBehaviour
 
     public void SetDamageText(string text, ColorType type)
     {
+        randPos = new Vector2(Random.Range(xMin, xMax), Random.Range(yMin, yMax));
+        randPos = (Vector2)transform.position + randPos;
+
         tmp.text = text;
         if (type == ColorType.enemyDamage)
             tmp.color = enemyDamage;
@@ -61,6 +69,30 @@ public class DamageTextController : MonoBehaviour
             tmp.color = playerDamage;
         else
             tmp.color = healing;
+    }
+
+    public void HideObject(bool value)
+    {
+        gameObject.SetActive(!value);
+        currentTime = 0;
+        transform.localScale = Vector3.zero;
+    }
+
+    public void SetPool(IObjectPool<DamageTextController> _pool) => pool = _pool;
+
+    void Dead()
+    {
+        pool.Release(this);
+    }
+
+    void WhaitingForDeath()
+    {
+        curretLifeTime -= Time.deltaTime;
+        if(curretLifeTime <= 0)
+        {
+            curretLifeTime = lifeTime;
+            Dead();
+        }
     }
 }
 

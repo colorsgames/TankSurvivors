@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Shell : MonoBehaviour
 {
+    [SerializeField] TrailRenderer trail;
+
     [SerializeField] private float deadRad;
     [SerializeField] private float speed;
+
+    private IObjectPool<Shell> pool;
 
     private Rigidbody2D rb;
 
@@ -16,7 +21,7 @@ public class Shell : MonoBehaviour
 
     private int damage;
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         oldPos = transform.position;
@@ -35,6 +40,11 @@ public class Shell : MonoBehaviour
         }
     }
 
+    public void SetStartPos(Vector3 pos)
+    {
+        oldPos = pos;
+    }
+
     public void SetCreatorVelocity(Vector2 vector)
     {
         creatorVelocity = vector;
@@ -50,9 +60,19 @@ public class Shell : MonoBehaviour
         this.damage = damage;
     }
 
+    public void HideObject(bool value)
+    {
+        gameObject.SetActive(!value);
+        rb.isKinematic = value;
+    }
+
+    public void SetPool(IObjectPool<Shell> _pool) => pool = _pool;
+
     void Dead()
     {
-        Destroy(gameObject);
+        trail.Clear();
+        if(!rb.isKinematic)
+            pool.Release(this);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -2,28 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class NPCSpawnManager : MonoBehaviour
 {
     public static NPCSpawnManager instance;
 
-    /*[SerializeField] private SpawnType type;
-
-    [SerializeField] private NPC spawnObj;
-
-    [SerializeField] private int maxCount;
-    [SerializeField] private int minKillingForSpawn;
-
-    [SerializeField] private float spawnRate;
-    [SerializeField] private float minSpawnRate;
-    [SerializeField] private float maxSpawnRate;
-
-    [SerializeField] private float xMin;
-    [SerializeField] private float xMax;
-    [SerializeField] private float yMin;
-    [SerializeField] private float yMax;*/
-
     [SerializeField] private SpawnAliveEntityData spawnData;
+
+    private ObjectPool<NPC> pool;
 
     SpawnType type;
 
@@ -32,7 +19,7 @@ public class NPCSpawnManager : MonoBehaviour
     int maxCount;
     int minKillingForSpawn;
 
-    float spawnRate;
+    float currentSpawnRate;
     float minSpawnRate;
     float maxSpawnRate;
 
@@ -45,7 +32,7 @@ public class NPCSpawnManager : MonoBehaviour
 
     private int currentEnemyCount;
 
-    private void Start()
+    private void Awake()
     {
         instance = this;
 
@@ -56,7 +43,7 @@ public class NPCSpawnManager : MonoBehaviour
         maxCount = spawnData.maxCount;
         minKillingForSpawn = spawnData.minKillingForSpawn;
 
-        spawnRate = spawnData.spawnRate;
+        currentSpawnRate = spawnData.spawnRate;
         minSpawnRate = spawnData.minSpawnRate;
         maxSpawnRate = spawnData.maxSpawnRate;
 
@@ -65,22 +52,41 @@ public class NPCSpawnManager : MonoBehaviour
         xMax = spawnData.xMax;
         yMax = spawnData.yMax;
 
+        if (maxCount > 0)
+            pool = new ObjectPool<NPC>(Spawn, OnTakeObject, OnReturnObject, maxSize: maxCount);
+    }
+
+    private void Start()
+    {
         player = FindObjectOfType<Player>().transform;
-        StartCoroutine(Spawning());
+        //StartCoroutine(Spawning());
     }
 
     IEnumerator Spawning()
     {
         while (true)
         {
-            yield return new WaitForSeconds(spawnRate);
+            yield return new WaitForSeconds(currentSpawnRate);
 
             if (currentEnemyCount < maxCount && GameManager.instance.Killings >= minKillingForSpawn)
-                Spawn();
+                GetNPC();
 
             if (type == SpawnType.RandomTime)
             {
-                spawnRate = Random.Range(minSpawnRate, maxSpawnRate);
+                currentSpawnRate = Random.Range(minSpawnRate, maxSpawnRate);
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (currentEnemyCount < maxCount && GameManager.instance.Killings >= minKillingForSpawn)
+        {
+            currentSpawnRate -= Time.deltaTime;
+            if (currentSpawnRate <= 0)
+            {
+                currentSpawnRate = spawnData.spawnRate;
+                GetNPC();
             }
         }
     }
@@ -90,15 +96,38 @@ public class NPCSpawnManager : MonoBehaviour
         currentEnemyCount--;
     }
 
-    void Spawn()
+    NPC Spawn()
+    {
+        NPC npc = Instantiate(spawnObj);
+        npc.SetSpawnManager(this);
+        npc.SetPool(pool);
+        return npc;
+    }
+
+    void OnTakeObject(NPC npc)
+    {
+        currentEnemyCount++;
+        npc.transform.position = (Vector2)player.position + GetRandPos();
+        npc.HideObject(false);
+    }
+
+    void OnReturnObject(NPC npc)
+    {
+        npc.HideObject(true);
+    }
+
+    void GetNPC()
+    {
+        var npc = pool.Get();
+    }
+
+    Vector2 GetRandPos()
     {
         Vector2 randVec = new Vector2(Random.Range(xMin, xMax), Random.Range(yMin, yMax));
         int randValue = Random.Range(-1, 1);
         if (randValue != 0)
             randVec *= randValue;
-        NPC npc = Instantiate(spawnObj, (Vector2)player.position + randVec, Quaternion.identity);
-        npc.SetSpawnManager(this);
-        currentEnemyCount++;
+        return randVec;
     }
 }
 

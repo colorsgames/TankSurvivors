@@ -16,7 +16,7 @@ MonoBehaviour:
   spawnObj: {fileID: 4043810982731833574, guid: d783439b26f1ca94ea77b61a1be6548c, type: 3}
   maxCount: 0
   minKillingForSpawn: 0
-  spawnRate: 30
+  spawnRate: 2
   minSpawnRate: 30
   maxSpawnRate: 40
   xMin: 17

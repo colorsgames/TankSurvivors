@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        Time.timeScale = 1;
         killingsTMP.text = "0";
         moneyTMP.text = "0";
         profitRatio = gameModeData.profitRatio;
@@ -44,9 +45,9 @@ public class GameManager : MonoBehaviour
         killingsTMP.text = killings.ToString();
     }
 
-    public void UpMoney()
+    public void UpMoney(int value)
     {
-        moneyForThisGame++;
+        moneyForThisGame+=value;
         moneyTMP.text = moneyForThisGame.ToString();
     }
 

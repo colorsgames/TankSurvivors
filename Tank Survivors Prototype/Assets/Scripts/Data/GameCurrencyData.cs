@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "New Game Currency Data", menuName = "Game Currency Data", order = 65)]
-public class GameCurrencyData : ScriptableObject
+//[CreateAssetMenu(fileName = "New Game Currency Data", menuName = "Game Currency Data", order = 65)]
+public class GameCurrencyData : MonoBehaviour
 {
     public static int TotalMoney { get { return totalMoney; } }
 
