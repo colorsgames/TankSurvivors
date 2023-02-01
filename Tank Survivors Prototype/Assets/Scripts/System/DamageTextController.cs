@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using TMPro.EditorUtilities;
 using UnityEngine.Pool;
 
 public class DamageTextController : MonoBehaviour
