@@ -22,6 +22,8 @@ public class ItemSpawnManager : MonoBehaviour
     int currentItemCount;
     float currentSpawnRate;
 
+    bool spawning = true;
+
     private void Awake()
     {
         player = FindObjectOfType<Player>().transform;
@@ -34,7 +36,7 @@ public class ItemSpawnManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentItemCount < maxItems)
+        if (currentItemCount < maxItems && spawning)
         {
             currentSpawnRate -= Time.deltaTime;
             if (currentSpawnRate <= 0)
@@ -49,6 +51,8 @@ public class ItemSpawnManager : MonoBehaviour
     {
         currentItemCount--;
     }
+
+    public void SetSpawning(bool value) => spawning = value;
 
     Items CreateItem()
     {

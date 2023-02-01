@@ -12,16 +12,13 @@ public class NPCSpawnManager : MonoBehaviour
 
     private ObjectPool<NPC> pool;
 
-    SpawnType type;
-
     NPC spawnObj;
 
     int maxCount;
     int minKillingForSpawn;
 
+    float spawnRate;
     float currentSpawnRate;
-    float minSpawnRate;
-    float maxSpawnRate;
 
     float xMin;
     float xMax;
@@ -36,16 +33,13 @@ public class NPCSpawnManager : MonoBehaviour
     {
         instance = this;
 
-        type = spawnData.type;
-
         spawnObj = spawnData.spawnObj;
 
         maxCount = spawnData.maxCount;
         minKillingForSpawn = spawnData.minKillingForSpawn;
 
+        spawnRate = spawnData.spawnRate;
         currentSpawnRate = spawnData.spawnRate;
-        minSpawnRate = spawnData.minSpawnRate;
-        maxSpawnRate = spawnData.maxSpawnRate;
 
         xMin = spawnData.xMin;
         yMin = spawnData.yMin;
@@ -59,23 +53,8 @@ public class NPCSpawnManager : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<Player>().transform;
-        //StartCoroutine(Spawning());
-    }
 
-    IEnumerator Spawning()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(currentSpawnRate);
-
-            if (currentEnemyCount < maxCount && GameManager.instance.Killings >= minKillingForSpawn)
-                GetNPC();
-
-            if (type == SpawnType.RandomTime)
-            {
-                currentSpawnRate = Random.Range(minSpawnRate, maxSpawnRate);
-            }
-        }
+        GameManager.decreaseSpawnRate.AddListener(DecreaseSpawnRate);
     }
 
     private void Update()
@@ -85,7 +64,7 @@ public class NPCSpawnManager : MonoBehaviour
             currentSpawnRate -= Time.deltaTime;
             if (currentSpawnRate <= 0)
             {
-                currentSpawnRate = spawnData.spawnRate;
+                currentSpawnRate = spawnRate;
                 GetNPC();
             }
         }
@@ -94,6 +73,12 @@ public class NPCSpawnManager : MonoBehaviour
     public void DecreaseCurrentCount()
     {
         currentEnemyCount--;
+    }
+
+    public void DecreaseSpawnRate()
+    {
+        if (spawnObj.GetComponent<Ally>()) return;
+        spawnRate = spawnRate / 2;
     }
 
     NPC Spawn()
@@ -129,10 +114,4 @@ public class NPCSpawnManager : MonoBehaviour
             randVec *= randValue;
         return randVec;
     }
-}
-
-public enum SpawnType
-{
-    RandomTime,
-    ConstTime
 }

@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    public static UnityEvent decreaseSpawnRate = new UnityEvent();
 
     public int Killings { get { return killings; } }
     public int Money { get { return moneyForThisGame; } }
@@ -25,6 +28,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text statsProfitRatioTMP;
     [SerializeField] private TMP_Text statsProfitRatioAndMoneyForThisGameTMP;
 
+    [SerializeField] private int invokeKills;
+
     int killings;
     int moneyForThisGame;
     int profitRatio;
@@ -34,7 +39,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         Time.timeScale = 1;
         killingsTMP.text = "0";
-        moneyTMP.text = "0";
+        moneyTMP.text = GameCurrencyData.TotalMoney.ToString();
         profitRatio = gameModeData.profitRatio;
         resultsPanel.SetActive(false);
     }
@@ -48,7 +53,7 @@ public class GameManager : MonoBehaviour
     public void UpMoney(int value)
     {
         moneyForThisGame+=value;
-        moneyTMP.text = moneyForThisGame.ToString();
+        moneyTMP.text = (moneyForThisGame + GameCurrencyData.TotalMoney).ToString();
     }
 
     public void OpenResults(bool value)
@@ -83,5 +88,6 @@ public class GameManager : MonoBehaviour
         statsProfitRatioAndMoneyForThisGameTMP.text = profitMoney.ToString();
         GameCurrencyData.IncreaseTotalMoney(profitMoney);
         statsTotalMoneyTMP.text = GameCurrencyData.TotalMoney.ToString();
+        GameCurrencyData.SaveMoney();
     }
 }

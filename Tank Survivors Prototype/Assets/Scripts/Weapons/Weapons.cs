@@ -58,7 +58,8 @@ public class Weapons : MonoBehaviour
         //shell.transform.position = item.transform.position;
         shell.SetStartPos(transform.position);
         shell.SetCreatorVelocity(owner.GetVelocity());
-        shell.SetDamage(Random.Range(weaponData.minDamage, weaponData.maxDamage));
+        int minDamage = weaponData.minDamage;
+        shell.SetDamage(Random.Range(minDamage, minDamage + weaponData.maxDamage));
         shell.HideObject(false);
         shooting = false;
         canShoot = false;

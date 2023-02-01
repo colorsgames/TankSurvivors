@@ -19,7 +19,6 @@ public class Ally : NPC
     public override void Start()
     {
         base.Start();
-        print("Pedik");
         player = FindObjectOfType<Player>();
         //player.IncreaseAlly();
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), boxCollider);
@@ -38,7 +37,7 @@ public class Ally : NPC
                 Vector2 fPos = (Vector2)player.transform.position + followTarget;
                 Following(fPos, radiusFollow);
 
-                if (Input.GetMouseButton(0))
+                if ((Input.GetMouseButton(0) && !PlatformManager.instance.IsMobile) || player.TowerJS.Shoot)
                 {
                     weapons.StartShooting();
                 }

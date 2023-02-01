@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shell: {fileID: 233585819823689110, guid: 6518638c2f8fa58498bb856c67b3c9f4, type: 3}
   minDamage: 5
-  maxDamage: 50
+  maxDamage: 45
   delay: 1
   minDelay: 0

@@ -17,4 +17,15 @@ public class GameCurrencyData : MonoBehaviour
     {
         totalMoney -= value;
     }
+
+    public static void SaveMoney()
+    {
+        PlayerPrefs.SetInt("TotalMoney", totalMoney);
+        totalMoney = 0;
+    }
+
+    public static void LoadMoney()
+    {
+        totalMoney = PlayerPrefs.GetInt("TotalMoney");
+    }
 }

@@ -16,8 +16,8 @@ public abstract class Skills : MonoBehaviour
     [SerializeField] private GameObject price;
 
     [SerializeField] private TMP_Text priceTMP;
-    [SerializeField] Color red;
-    [SerializeField] Color green;
+
+    [SerializeField] ColorData colors;
 
     [SerializeField] private string description;
 
@@ -25,21 +25,26 @@ public abstract class Skills : MonoBehaviour
     [SerializeField] private int startPrice;
     [SerializeField] private float increaseCoefficient;
 
-    int step;
+    Color red;
+    Color green;
+
+    protected int step;
     int currentPrice;
 
     private void Awake()
     {
         UpgradeManager.onButtonDown.AddListener(FoundsCheck);
+
+        red = colors.red;
+        green = colors.green;
     }
 
     private void Start()
     {
-        PlayerPrefs.DeleteAll();
-        step = PlayerPrefs.GetInt("step");
-        currentPrice = PlayerPrefs.GetInt("price");
+        step = PlayerPrefs.GetInt("step" + gameObject.name);
+        currentPrice = PlayerPrefs.GetInt(gameObject.name);
 
-        if(currentPrice == 0)
+        if (currentPrice == 0)
         {
             currentPrice = startPrice;
         }
@@ -52,8 +57,9 @@ public abstract class Skills : MonoBehaviour
     public virtual void Use()
     {
         step++;
-        PlayerPrefs.SetInt("step", step);
+        PlayerPrefs.SetInt("step" + gameObject.name, step);
         GameCurrencyData.DecreaseTotalMoney(currentPrice);
+        GameCurrencyData.SaveMoney();
         NextPrice();
         StepCheck();
     }
@@ -62,7 +68,7 @@ public abstract class Skills : MonoBehaviour
     {
         currentPrice += (int)(currentPrice / increaseCoefficient);
         UpdatePrice();
-        PlayerPrefs.SetInt("price", currentPrice);
+        PlayerPrefs.SetInt(gameObject.name, currentPrice);
     }
 
     public void ShowIntfo()
@@ -86,7 +92,7 @@ public abstract class Skills : MonoBehaviour
 
     void FoundsCheck()
     {
-        if(GameCurrencyData.TotalMoney < currentPrice)
+        if (GameCurrencyData.TotalMoney < currentPrice)
         {
             priceTMP.color = red;
             InsufficientFunds = true;

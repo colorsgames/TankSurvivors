@@ -74,7 +74,7 @@ public class NPC : AliveEntity
         boxCollider.enabled = !value;
         Alive = !value;
         Rb.isKinematic = value;
-        if (value)
+        if (!value)
             tower.transform.position = transform.position;
         ResetHealth();
     }

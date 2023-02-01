@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class AllyCount : Skills
 {
-    [SerializeField] private SpawnAliveEntityData allySpawnData;
-
     public override void Use()
     {
-        allySpawnData.maxCount++;
+        SkillsManager.instance.IncreaseAllyCount();
         base.Use();
     }
 }

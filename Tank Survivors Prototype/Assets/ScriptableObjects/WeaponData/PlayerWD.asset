@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerWD
   m_EditorClassIdentifier: 
   shell: {fileID: 233585819823689110, guid: 4f13da3b29914f84e8360cdb04d1660d, type: 3}
-  minDamage: 18
-  maxDamage: 30
+  minDamage: 20
+  maxDamage: 10
   delay: 0.5
   minDelay: 0.1

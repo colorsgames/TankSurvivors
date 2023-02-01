@@ -13,8 +13,9 @@ public class UpgradeManager : MonoBehaviour, IPointerDownHandler
 
     public static UnityEvent onButtonDown = new UnityEvent();
 
-    [SerializeField] private TMP_Text descriptionText;
-    [SerializeField] private TMP_Text money;
+    [SerializeField] private TMP_Text descriptionTMP;
+    [SerializeField] private TMP_Text priceBarTMP;
+    [SerializeField] private TMP_Text totalMoneyTMP;
     [SerializeField] private GameObject unselected;
     [SerializeField] private GameObject maxStep;
     [SerializeField] private GameObject needMoney;
@@ -25,15 +26,16 @@ public class UpgradeManager : MonoBehaviour, IPointerDownHandler
 
     private void Awake()
     {
+        //PlayerPrefs.DeleteAll();
         instance = this;
+        onButtonDown.AddListener(UpdateMoneyText);
         //button = GetComponentInChildren<Button>();
     }
 
     public void SelectUpgrade(Skills skill)
     {
         selectedSkills = skill;
-        descriptionText.text = selectedSkills.Descritpion;
-
+        descriptionTMP.text = selectedSkills.Descritpion;
         UpdateSelectedSkillState();
     }
 
@@ -47,6 +49,12 @@ public class UpgradeManager : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         Clear();
+    }
+
+    void UpdateMoneyText()
+    {
+        GameCurrencyData.LoadMoney();
+        totalMoneyTMP.text = GameCurrencyData.TotalMoney.ToString();
     }
 
     void UpdateSelectedSkillState()
@@ -64,7 +72,7 @@ public class UpgradeManager : MonoBehaviour, IPointerDownHandler
             maxStep.SetActive(false);
             unselected.SetActive(false);
             needMoney.SetActive(true);
-            money.text = selectedSkills.Price.ToString();
+            priceBarTMP.text = selectedSkills.Price.ToString();
         }
         else
         {
@@ -81,6 +89,6 @@ public class UpgradeManager : MonoBehaviour, IPointerDownHandler
         maxStep.SetActive(false);
         unselected.SetActive(true);
         needMoney.SetActive(false);
-        descriptionText.text = string.Empty;
+        descriptionTMP.text = string.Empty;
     }
 }

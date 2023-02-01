@@ -18,7 +18,7 @@ public class AliveEntity : MonoBehaviour
 
         [SerializeField] private float speed;
         [SerializeField] private float rotationSpeed = 20;*/
-    [SerializeField] private AliveEntityData aliveEntityData;
+    [SerializeField] protected AliveEntityData aliveEntityData;
 
     protected WeaponData weaponData;
 
@@ -60,7 +60,7 @@ public class AliveEntity : MonoBehaviour
 
     public virtual void Start()
     {
-        MaxWeaponId = tower.transform.childCount;
+        MaxWeaponId = tower.transform.childCount - 1;
         ChangeWeapon(aliveEntityData.startWeaponId);
     }
 

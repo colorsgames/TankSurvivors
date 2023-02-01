@@ -39,6 +39,10 @@ public class TimeCounter : MonoBehaviour
                 minutes++;
                 seconds = 0;
             }
+            if(minutes == maxMinutes - 1 & seconds == 0)
+            {
+                GameManager.decreaseSpawnRate.Invoke();
+            }
             if(minutes == maxMinutes)
             {
                 GameManager.instance.OpenResults(true);

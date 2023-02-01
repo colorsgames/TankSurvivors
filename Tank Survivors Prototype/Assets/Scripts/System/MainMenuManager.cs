@@ -23,11 +23,13 @@ public class MainMenuManager : MonoBehaviour
     {
         mainButtons.SetActive(!value);
         skills.SetActive(value);
+        UpgradeManager.onButtonDown.Invoke();
     }
 
     public void SetGameMinutes(int value)
     {
         gameMode.maxMunites = value;
+        SkillsManager.instance.SetSkills();
         SceneManager.LoadScene(1);
     }
 
