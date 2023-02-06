@@ -19,7 +19,7 @@ public class Shell : MonoBehaviour
     private Vector2 velocity;
     private Vector2 oldPos;
 
-    private int damage;
+    private float damage;
 
     private void Awake()
     {
@@ -55,7 +55,7 @@ public class Shell : MonoBehaviour
         direction = dir;
     }
 
-    public void SetDamage(int damage)
+    public void SetDamage(float damage)
     {
         this.damage = damage;
     }
@@ -82,11 +82,11 @@ public class Shell : MonoBehaviour
             collision.GetComponent<AliveEntity>().MakeDamage(damage);
             if (collision.GetComponent<Enemy>())
             {
-                PopupTextManager.instance.SpawnDamageText(transform.position, ColorType.enemyDamage, $"-{damage}");
+                PopupTextManager.Instance.SpawnDamageText(transform.position, ColorType.enemyDamage, $"-{damage.ToString("0.0")}");
             }
             else
             {
-                PopupTextManager.instance.SpawnDamageText(transform.position, ColorType.playerDamage, $"-{damage}");
+                PopupTextManager.Instance.SpawnDamageText(transform.position, ColorType.playerDamage, $"-{damage.ToString("0.0")}");
             }
             Dead();
         }

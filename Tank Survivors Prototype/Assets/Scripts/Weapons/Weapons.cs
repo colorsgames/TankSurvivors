@@ -57,7 +57,7 @@ public class Weapons : MonoBehaviour
         //shell.transform.position = item.transform.position;
         shell.SetStartPos(transform.position);
         shell.SetCreatorVelocity(owner.GetVelocity());
-        int minDamage = weaponData.minDamage;
+        float minDamage = weaponData.minDamage;
         shell.SetDamage(Random.Range(minDamage, minDamage + weaponData.maxDamage));
         shell.HideObject(false);
         shooting = false;
@@ -74,6 +74,7 @@ public class Weapons : MonoBehaviour
     {
         var shell = pool.Get();
         shell.transform.position = spawnPoint[i].position;
+        shell.transform.rotation = spawnPoint[i].rotation;
         shell.SetDir(spawnPoint[i].right);
     }
 

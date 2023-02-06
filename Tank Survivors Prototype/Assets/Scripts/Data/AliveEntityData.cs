@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Alive Entity Data", menuName = "Alive Entity Data", order = 63)]
 public class AliveEntityData : ScriptableObject
 {
-    public int maxHealth;
+    public float maxHealth;
     public int startWeaponId;
 
     public float moveSpeed = 500;

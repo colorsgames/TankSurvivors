@@ -5,8 +5,8 @@ using UnityEngine;
 public class WeaponData : ScriptableObject
 {
     public Shell shell;
-    public int minDamage;
-    public int maxDamage;
+    public float minDamage;
+    public float maxDamage;
     public float delay;
     public float minDelay;
 }

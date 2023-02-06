@@ -12,11 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3533cab4e1166f94599582472a7c97f7, type: 3}
   m_Name: Ally
   m_EditorClassIdentifier: 
-  spawnObj: {fileID: 4043810982731833574, guid: d783439b26f1ca94ea77b61a1be6548c, type: 3}
+  spawnObj: {fileID: 43318456271649942, guid: d783439b26f1ca94ea77b61a1be6548c, type: 3}
+  type: 2
   maxCount: 0
   minKillingForSpawn: 0
-  spawnRate: 1
-  xMin: 17
-  xMax: 20
+  spawnRate: 30
+  startSpawnRate: 1
+  spawnRadius: 0
+  xMin: 22
+  xMax: 25
   yMin: -20
   yMax: 20
+  minSpawnCount: 0
+  maxSpawnCount: 0
+  spawnAllOnStart: 1

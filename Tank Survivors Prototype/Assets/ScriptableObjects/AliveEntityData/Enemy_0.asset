@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Enemy_0
   m_EditorClassIdentifier: 
   maxHealth: 100
-  allyCount: 0
   startWeaponId: 0
-  moveSpeed: 300
+  moveSpeed: 100
   rotationSpeed: 20
   explosionPrefab: {fileID: 5042689738168717835, guid: 2e3fa536569659d4585589c5d8d74733, type: 3}
   weaponData: {fileID: 11400000, guid: 48a2d3e40b74cec4aa7f62a6a153b729, type: 2}

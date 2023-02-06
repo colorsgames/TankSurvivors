@@ -11,6 +11,8 @@ public class NPC : AliveEntity
     [SerializeField] protected float radiusFollow = 5;
     [SerializeField] private float destroyTime = 1;
 
+    [SerializeField] private TrailRenderer[] trails;
+
     protected BoxCollider2D boxCollider;
 
     NPCSpawnManager spawnManager;
@@ -33,7 +35,7 @@ public class NPC : AliveEntity
             {
                 currentDestroyTime = destroyTime;
                 //tower.gameObject.SetActive(false);
-                pool.Release(this);
+                PoolRelease();
             }
         }
 
@@ -41,7 +43,7 @@ public class NPC : AliveEntity
 
     public override void Dead()
     {
-        spawnManager.DecreaseCurrentCount();
+        //spawnManager.DecreaseCurrentCount();
         boxCollider.enabled = false;
         base.Dead();
     }
@@ -79,4 +81,13 @@ public class NPC : AliveEntity
         ResetHealth();
     }
 
+    protected void PoolRelease()
+    {
+        foreach (var item in trails)
+        {
+            item.Clear();
+        }
+        spawnManager.DecreaseCurrentCount();
+        pool.Release(this);
+    }
 }

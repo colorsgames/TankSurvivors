@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3533cab4e1166f94599582472a7c97f7, type: 3}
   m_Name: Enemy_2
   m_EditorClassIdentifier: 
-  type: 1
-  spawnObj: {fileID: 7462753885941991784, guid: 4d425835b406f784c89c8ea2765a6a51, type: 3}
-  maxCount: 10
+  spawnObj: {fileID: 8571502535807309968, guid: 4d425835b406f784c89c8ea2765a6a51, type: 3}
+  maxCount: 20
   minKillingForSpawn: 80
-  spawnRate: 2
-  minSpawnRate: 0
-  maxSpawnRate: 0
-  xMin: 17
-  xMax: 20
+  spawnRate: 10
+  startSpawnRate: 2
+  xMin: 22
+  xMax: 25
   yMin: -20
   yMax: 20
+  minSpawnCount: 1
+  maxSpawnCount: 10

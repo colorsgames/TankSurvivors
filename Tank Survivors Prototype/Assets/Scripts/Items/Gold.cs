@@ -8,7 +8,7 @@ public class Gold : Items
 
     public override void Use()
     {
-        GameManager.instance.UpMoney(maxMoney);
+        GameManager.Instance.UpMoney(maxMoney);
         base.Use();
     }
 }

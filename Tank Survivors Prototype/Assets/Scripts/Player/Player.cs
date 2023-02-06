@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Player : AliveEntity
 {
+    public static Player Instance;
+
     public Vector2 TowerTarget { get { return towerTarget; } }
 
     public Joystick TowerJS { get { return jsTower; } }
@@ -28,24 +30,29 @@ public class Player : AliveEntity
 
     Vector2 towerTarget;
 
-    int oldDamage;
+    float oldDamage;
 
     float oldDelay;
 
+    public override void Awake()
+    {
+        Instance = this;
+        base.Awake();
+    }
 
     public override void Start()
     {
         healthBar = FindObjectOfType<HealthBarController>();
         healingSpawn = GameObject.Find("HealingSpawn").GetComponent<ItemSpawnManager>();
-        nextWeapon = GameObject.Find("NextWeaponSpawn").GetComponent<ItemSpawnManager>();
-        previousWeapon = GameObject.Find("PreviousWeaponSpawn").GetComponent<ItemSpawnManager>();
-        decreaseShotTime = GameObject.Find("DecreaseShotTimeSpawn").GetComponent<ItemSpawnManager>();
+        //nextWeapon = GameObject.Find("NextWeaponSpawn").GetComponent<ItemSpawnManager>();
+        //previousWeapon = GameObject.Find("PreviousWeaponSpawn").GetComponent<ItemSpawnManager>();
+        //decreaseShotTime = GameObject.Find("DecreaseShotTimeSpawn").GetComponent<ItemSpawnManager>();
 
         oldDamage = weaponData.minDamage;
         oldDelay = weaponData.delay;
         cam = Camera.main;
-        healingSpawn.SetSpawning(false);
-        previousWeapon.SetSpawning(false);
+        //healingSpawn.SetSpawning(false);
+        //previousWeapon.SetSpawning(false);
 
         if (weaponData.delay <= weaponData.minDelay)
             decreaseShotTime.SetSpawning(false);
@@ -57,7 +64,7 @@ public class Player : AliveEntity
     {
         if (!Alive) return;
 
-        if (!PlatformManager.instance.IsMobile)
+        if (!PlatformManager.Instance.IsMobile)
         {
             movementInput.y = Input.GetAxis("Horizontal");
             movementInput.x = Input.GetAxis("Vertical");
@@ -84,7 +91,7 @@ public class Player : AliveEntity
 
     private void LateUpdate()
     {
-        if (!PlatformManager.instance.IsMobile) return;
+        if (!PlatformManager.Instance.IsMobile) return;
         Vector2 lookPos = new Vector2(jsTower.Horizontal, jsTower.Vertical);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, lookPos, aimDistance, aimMask);
         if (hit)
@@ -97,14 +104,14 @@ public class Player : AliveEntity
         tower.SetTarget(towerTarget);
     }
 
-    public override void MakeDamage(int damage)
+    public override void MakeDamage(float damage)
     {
         base.MakeDamage(damage);
         healingSpawn.SetSpawning(true);
         healthBar.UpdateValue(Health);
     }
 
-    public override void Healing(int value)
+    public override void Healing(float value)
     {
         base.Healing(value);
         healthBar.UpdateValue(Health);
@@ -115,7 +122,7 @@ public class Player : AliveEntity
     public override void Dead()
     {
         base.Dead();
-        GameManager.instance.OpenResults(false);
+        GameManager.Instance.OpenResults();
     }
 
     public int GetFreePlaceID()
@@ -143,12 +150,7 @@ public class Player : AliveEntity
         if (currentWeaponId < MaxWeaponId)
         {
             ChangeWeapon(++currentWeaponId);
-            previousWeapon.SetSpawning(true);
             //ResetWeaponData();
-        }
-        if (currentWeaponId >= MaxWeaponId)
-        {
-            nextWeapon.SetSpawning(false);
         }
     }
 

@@ -7,9 +7,12 @@ public class UIAimController : MonoBehaviour
 {
     public static UIAimController instance;
 
+    Image image;
+
     private void Start()
     {
         instance = this;
+        image = GetComponent<Image>();
         Cursor.visible = false;
     }
 
@@ -18,9 +21,9 @@ public class UIAimController : MonoBehaviour
         transform.position = Input.mousePosition;
     }
 
-    public void DestroyAim()
+    public void AimDeactivate(bool value)
     {
-        Cursor.visible = true;
-        Destroy(gameObject);
+        Cursor.visible = value;
+        image.enabled = !value;
     }
 }

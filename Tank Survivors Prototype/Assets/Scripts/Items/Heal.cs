@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Heal : Items
 {
-    [SerializeField] private int healValue;
+    [SerializeField] private float healValue;
 
     public override void Use()
     {

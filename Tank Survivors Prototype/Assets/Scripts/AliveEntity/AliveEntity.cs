@@ -6,7 +6,7 @@ using UnityEngine;
 public class AliveEntity : MonoBehaviour
 {
     public bool Alive { get { return alive; } set { alive = value; } }
-    public int Health { get { return currentHealth; } }
+    public float Health { get { return currentHealth; } }
     public Rigidbody2D Rb { get { return rb; } }
     [HideInInspector]public Tower tower;
     /*    [SerializeField] private int startWeaponId;
@@ -32,17 +32,15 @@ public class AliveEntity : MonoBehaviour
     protected Weapons weapons;
     protected Vector2 movementInput;
 
-    int maxHealth;
     int maxWeaponId;
 
-    float speed;
+    float currentHealth;
     float rotationSpeed;
 
     Rigidbody2D rb;
 
     Vector2 velocity;
 
-    int currentHealth;
 
     bool alive = true;
 
@@ -50,10 +48,8 @@ public class AliveEntity : MonoBehaviour
     {
         tower = GetComponentInChildren<Tower>();
         rb = GetComponent<Rigidbody2D>();
-        maxHealth = aliveEntityData.maxHealth;
-        speed = aliveEntityData.moveSpeed;
+        currentHealth = aliveEntityData.maxHealth;
         rotationSpeed = aliveEntityData.rotationSpeed;
-        currentHealth = maxHealth;
         weaponData = aliveEntityData.weaponData;
         currentWeaponId = aliveEntityData.startWeaponId;
     }
@@ -74,7 +70,7 @@ public class AliveEntity : MonoBehaviour
         return weaponData;
     }
 
-    public virtual void MakeDamage(int damage)
+    public virtual void MakeDamage(float damage)
     {
         currentHealth -= damage;
         if (currentHealth <= 0)
@@ -89,24 +85,24 @@ public class AliveEntity : MonoBehaviour
         alive = false;
     }
 
-    public virtual void Healing(int value)
+    public virtual void Healing(float value)
     {
-        if (currentHealth == maxHealth) return;
-        if (currentHealth + value >= maxHealth)
+        if (currentHealth == aliveEntityData.maxHealth) return;
+        if (currentHealth + value >= aliveEntityData.maxHealth)
         {
-            PopupTextManager.instance.SpawnDamageText(transform.position, ColorType.healing, $"+{maxHealth - currentHealth}");
-            currentHealth = maxHealth;
+            PopupTextManager.Instance.SpawnDamageText(transform.position, ColorType.healing, $"+{(aliveEntityData.maxHealth - currentHealth).ToString("0.0")}");
+            currentHealth = aliveEntityData.maxHealth;
         }
         else
         {
-            PopupTextManager.instance.SpawnDamageText(transform.position, ColorType.healing, $"+{value}");
+            PopupTextManager.Instance.SpawnDamageText(transform.position, ColorType.healing, $"+{value.ToString("0.0")}");
             currentHealth += value;
         }
     }
 
     protected void ResetHealth()
     {
-        currentHealth = maxHealth;
+        currentHealth = aliveEntityData.maxHealth;
     }
 
     public void ChangeWeapon(int id)
@@ -138,8 +134,8 @@ public class AliveEntity : MonoBehaviour
 
         if (!alive) movementInput = Vector2.zero;
 
-        velocity = (Vector2.up * movementInput.x * speed) +
-            (Vector2.right * movementInput.y * speed);
+        velocity = (Vector2.up * movementInput.x * aliveEntityData.moveSpeed) +
+            (Vector2.right * movementInput.y * aliveEntityData.moveSpeed);
 
         rb.velocity = velocity * Time.deltaTime;
 

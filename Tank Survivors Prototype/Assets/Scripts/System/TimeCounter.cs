@@ -5,14 +5,24 @@ using TMPro;
 
 public class TimeCounter : MonoBehaviour
 {
+    public static TimeCounter Instance;
+
     [SerializeField] GameModeData gameMode;
 
     [SerializeField] private TMP_Text minutesTMP;
     [SerializeField] private TMP_Text secundsTMP;
 
+    public string Minutes { get { return minutesTMP.text; } }
+    public string Seconds { get { return secundsTMP.text; } }
+
     int minutes;
     int seconds;
     int maxMinutes;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -39,14 +49,14 @@ public class TimeCounter : MonoBehaviour
                 minutes++;
                 seconds = 0;
             }
-            if(minutes == maxMinutes - 1 & seconds == 0)
+/*            if(minutes == maxMinutes - 1 & seconds == 0)
             {
                 GameManager.decreaseSpawnRate.Invoke();
             }
             if(minutes == maxMinutes)
             {
                 GameManager.instance.OpenResults(true);
-            }
+            }*/
         }
     }
 }
