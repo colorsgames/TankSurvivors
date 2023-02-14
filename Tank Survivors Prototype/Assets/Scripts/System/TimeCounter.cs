@@ -17,7 +17,6 @@ public class TimeCounter : MonoBehaviour
 
     int minutes;
     int seconds;
-    int maxMinutes;
 
     private void Awake()
     {
@@ -27,7 +26,6 @@ public class TimeCounter : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Counter());
-        maxMinutes = gameMode.maxMunites;
     }
 
     IEnumerator Counter()

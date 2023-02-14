@@ -7,7 +7,7 @@ namespace EternalSkills
 {
     public abstract class Skills : MonoBehaviour
     {
-        public string Descritpion { get { return description; } }
+        public string Descritpion { get { return LanguageManager.isEng ? engDescription : ruDescription; } }
 
         public int Price { get { return currentPrice; } }
 
@@ -15,26 +15,18 @@ namespace EternalSkills
         public bool InsufficientFunds { get; private set; }
 
         [SerializeField] private SkillLevelData skillLevelData;
-        [SerializeField] private GameObject blockLimit;
-        [SerializeField] private GameObject price;
-
-        [SerializeField] private TMP_Text priceTMP;
-
-        [SerializeField] ColorData colors;
-
-        [SerializeField] private string description;
+        [SerializeField] private TMP_Text lvlTMP;
+        [SerializeField] private string ruLvl = "Óð.: ", engLvl = "Lvl: ";
+        [SerializeField] private string ruDescription, engDescription;
 
         [SerializeField] private float endValue;
-        [SerializeField] private int startPrice;
-        [SerializeField] private float priceIncreaseCoefficient;
+        [SerializeField] private int startPrice = 10;
+        [SerializeField] private float priceIncreaseCoefficient = 1.5f;
 
         [SerializeField] private bool isDecreaseValue;
 
         [SerializeField] protected float percent;
         [SerializeField] protected int level;
-
-        Color red;
-        Color green;
 
         protected float currentValue;
 
@@ -44,13 +36,13 @@ namespace EternalSkills
         {
             UpgradeManager.onButtonDown.AddListener(FoundsCheck);
             SkillsManager.StartGame.AddListener(SetSkillData);
-            red = colors.red;
-            green = colors.green;
+            LanguageManager.onChangeLang.AddListener(UpdateLevel);
         }
 
         public virtual void Start()
         {
             level = PlayerPrefs.GetInt("step" + gameObject.name);
+            UpdateLevel();
             currentPrice = PlayerPrefs.GetInt(gameObject.name);
 
             if (currentPrice == 0)
@@ -59,13 +51,13 @@ namespace EternalSkills
             }
 
             StepCheck();
-            UpdatePrice();
             FoundsCheck();
         }
 
         public virtual void Use()
         {
             level++;
+            UpdateLevel();
             PlayerPrefs.SetInt("step" + gameObject.name, level);
             GameCurrencyData.DecreaseTotalMoney(currentPrice);
             GameCurrencyData.SaveMoney();
@@ -85,13 +77,17 @@ namespace EternalSkills
         public void NextPrice()
         {
             currentPrice += (int)(currentPrice / priceIncreaseCoefficient);
-            UpdatePrice();
             PlayerPrefs.SetInt(gameObject.name, currentPrice);
         }
 
         public void ShowIntfo()
         {
             UpgradeManager.Instance.SelectUpgrade(this);
+        }
+
+        void UpdateLevel()
+        {
+            lvlTMP.text = LanguageManager.isEng ? engLvl : ruLvl + level;
         }
 
         void StepCheck()
@@ -114,25 +110,17 @@ namespace EternalSkills
 
         void Block()
         {
-            blockLimit.SetActive(true);
             StepsExhausted = true;
-        }
-
-        void UpdatePrice()
-        {
-            priceTMP.text = currentPrice.ToString();
         }
 
         void FoundsCheck()
         {
             if (GameCurrencyData.TotalMoney < currentPrice)
             {
-                priceTMP.color = red;
                 InsufficientFunds = true;
             }
             else
             {
-                priceTMP.color = green;
                 InsufficientFunds = false;
             }
         }

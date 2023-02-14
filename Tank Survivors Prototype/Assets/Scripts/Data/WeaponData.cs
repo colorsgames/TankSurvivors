@@ -9,4 +9,6 @@ public class WeaponData : ScriptableObject
     public float maxDamage;
     public float delay;
     public float minDelay;
+    public float shotShakeIntensity;
+    public float shotShakeTime;
 }

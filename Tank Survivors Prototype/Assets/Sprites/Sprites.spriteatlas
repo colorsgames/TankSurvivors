@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 20ae881d746888b408c54249af634bf6, type: 3}
+    - {fileID: 2800000, guid: 5f349b68bc545f3499bc75fe4614962f, type: 3}
+    - {fileID: 2800000, guid: f064da3c03733b34f84994f2125b2d6d, type: 3}
+    - {fileID: 2800000, guid: e3240c71ce953714c9bece3c3dbdbc43, type: 3}
+    - {fileID: 2800000, guid: 64e93ec5bc0c04a49b32c82bc7a8e2e0, type: 3}
+    - {fileID: 2800000, guid: f6759efb5cd71f245ae6bb85e18b4048, type: 3}
+    - {fileID: 2800000, guid: b655d5b192b53b64a82742c0ae4d146c, type: 3}
+    - {fileID: 2800000, guid: fef40b7b1ae6f8e49985f6d31c0ab8d6, type: 3}
+    - {fileID: 2800000, guid: 18f51168b9cd7764c9c8879f6e69f166, type: 3}
+    - {fileID: 2800000, guid: c1c40333131a61b4db43d6f9333cb004, type: 3}
+    - {fileID: 2800000, guid: 30309d081def4cf4fa9f9a95675611e1, type: 3}
+    - {fileID: 2800000, guid: 8c903264d2fe23e46b3ece9337b4b253, type: 3}
+    - {fileID: 2800000, guid: 4caad725f8bb115409133057fa731b16, type: 3}
+    - {fileID: 2800000, guid: ca1971d4c3c10184ab64a3eceaca3590, type: 3}
+    - {fileID: 2800000, guid: 13cd84237ab620c4aaf720caea69b275, type: 3}
+    - {fileID: 2800000, guid: 51d8798c2a4bded4e80a110923fb3477, type: 3}
+    - {fileID: 2800000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
+    - {fileID: 2800000, guid: ca1dbbda09c5f614da8219369467234c, type: 3}
+    - {fileID: 2800000, guid: 4003347694369f34497001d7d2dca6eb, type: 3}
+    - {fileID: 2800000, guid: e1c93f0fc51735b40b54dfc1d239f9e8, type: 3}
+    - {fileID: 2800000, guid: 434e74f53b8deff4583cc94e982fbbf8, type: 3}
+    - {fileID: 2800000, guid: 8cd273e5fd70eb04e9a63f81a18057e1, type: 3}
+    - {fileID: 2800000, guid: 7d425c9182bc5fc428cb641179e78db2, type: 3}
+    - {fileID: 2800000, guid: ec6b52461c7185d42b3ac05901e8b63b, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: e3240c71ce953714c9bece3c3dbdbc43, type: 3}
+  - {fileID: 21300000, guid: 7d425c9182bc5fc428cb641179e78db2, type: 3}
+  - {fileID: 21300000, guid: b655d5b192b53b64a82742c0ae4d146c, type: 3}
+  - {fileID: 21300000, guid: 13cd84237ab620c4aaf720caea69b275, type: 3}
+  - {fileID: 21300000, guid: c1c40333131a61b4db43d6f9333cb004, type: 3}
+  - {fileID: 21300000, guid: 8c903264d2fe23e46b3ece9337b4b253, type: 3}
+  - {fileID: 21300000, guid: ca1971d4c3c10184ab64a3eceaca3590, type: 3}
+  - {fileID: 21300000, guid: 4caad725f8bb115409133057fa731b16, type: 3}
+  - {fileID: 21300000, guid: 64e93ec5bc0c04a49b32c82bc7a8e2e0, type: 3}
+  - {fileID: 21300000, guid: 8cd273e5fd70eb04e9a63f81a18057e1, type: 3}
+  - {fileID: 21300000, guid: 434e74f53b8deff4583cc94e982fbbf8, type: 3}
+  - {fileID: 21300000, guid: ec6b52461c7185d42b3ac05901e8b63b, type: 3}
+  - {fileID: 21300000, guid: 4003347694369f34497001d7d2dca6eb, type: 3}
+  - {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
+  - {fileID: 21300000, guid: 30309d081def4cf4fa9f9a95675611e1, type: 3}
+  - {fileID: 21300000, guid: 18f51168b9cd7764c9c8879f6e69f166, type: 3}
+  - {fileID: 21300000, guid: 5f349b68bc545f3499bc75fe4614962f, type: 3}
+  - {fileID: 21300000, guid: ca1dbbda09c5f614da8219369467234c, type: 3}
+  - {fileID: 21300000, guid: fef40b7b1ae6f8e49985f6d31c0ab8d6, type: 3}
+  - {fileID: 21300000, guid: f6759efb5cd71f245ae6bb85e18b4048, type: 3}
+  - {fileID: 21300000, guid: f064da3c03733b34f84994f2125b2d6d, type: 3}
+  - {fileID: 21300000, guid: 51d8798c2a4bded4e80a110923fb3477, type: 3}
+  - {fileID: 21300000, guid: 20ae881d746888b408c54249af634bf6, type: 3}
+  - {fileID: 21300000, guid: e1c93f0fc51735b40b54dfc1d239f9e8, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Tower_1
+  - Body
+  - Tower_1
+  - Tower_0
+  - ItemShadow
+  - Gold
+  - HealingStuff
+  - GoldItem
+  - Body
+  - Tower_3
+  - Desert_0
+  - Shell
+  - Cactus
+  - DesertClear
+  - Expa
+  - Body
+  - Particle
+  - Bush
+  - Tower_2
+  - Tower_2
+  - Tower_0
+  - Body
+  - Test
+  - Desert
+  m_RenderDataMap: {}
+  m_Tag: Sprites
+  m_IsVariant: 0

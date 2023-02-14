@@ -15,11 +15,10 @@ public class UpgradeManager : MonoBehaviour, IPointerDownHandler
     public static UnityEvent onButtonDown = new UnityEvent();
 
     [SerializeField] private TMP_Text descriptionTMP;
-    [SerializeField] private TMP_Text priceBarTMP;
+    [SerializeField] private TMP_Text buttonTextTMP;
     [SerializeField] private TMP_Text totalMoneyTMP;
-    [SerializeField] private GameObject unselected;
-    [SerializeField] private GameObject maxStep;
-    [SerializeField] private GameObject needMoney;
+
+    [SerializeField] private Color green, red;
 
     [SerializeField] private Button button;
 
@@ -64,33 +63,27 @@ public class UpgradeManager : MonoBehaviour, IPointerDownHandler
         if (selectedSkills.StepsExhausted)
         {
             button.enabled = false;
-            maxStep.SetActive(true);
-            unselected.SetActive(false);
-            needMoney.SetActive(false);
+            buttonTextTMP.text = "FULL";
+            buttonTextTMP.color = Color.white;
         }
         else if (selectedSkills.InsufficientFunds)
         {
             button.enabled = false;
-            maxStep.SetActive(false);
-            unselected.SetActive(false);
-            needMoney.SetActive(true);
-            priceBarTMP.text = selectedSkills.Price.ToString();
+            buttonTextTMP.text = selectedSkills.Price.ToString();
+            buttonTextTMP.color = red;
         }
         else
         {
             button.enabled = true;
-            maxStep.SetActive(false);
-            unselected.SetActive(false);
-            needMoney.SetActive(false);
+            buttonTextTMP.text = selectedSkills.Price.ToString();
+            buttonTextTMP.color = green;
         }
     }
 
     void Clear()
     {
         button.enabled = false;
-        maxStep.SetActive(false);
-        unselected.SetActive(true);
-        needMoney.SetActive(false);
+        buttonTextTMP.text = String.Empty;
         descriptionTMP.text = string.Empty;
     }
 }

@@ -15,6 +15,13 @@ namespace TemporarySkills
         }
 
         [SerializeField] private TMP_Text levelTMP;
+        [SerializeField] private TMP_Text nameTMP;
+        [SerializeField] private TMP_Text descriptionTMP;
+
+        [SerializeField] private string ruLvl = "Ур.: ", engLvl = "Lvl: ";
+        [SerializeField] private string ruNew = "Новое", engNew = "New";
+        [SerializeField] private string ruName, engName;
+        [SerializeField] private string ruDescription, engDescription;
 
         [SerializeField] protected SkillLevelData skillLevelData;
 
@@ -22,13 +29,15 @@ namespace TemporarySkills
 
         private void Start()
         {
-            if(skillLevelData.level == 0)
+            nameTMP.text = LanguageManager.isEng ? engName : ruName;
+            descriptionTMP.text = LanguageManager.isEng ? engDescription : ruDescription;
+            if (skillLevelData.level == 0)
             {
-                levelTMP.text = "New";
+                levelTMP.text = LanguageManager.isEng ? engNew : ruNew;
             }
             else
             {
-                levelTMP.text = "Level: " + skillLevelData.level;
+                levelTMP.text = LanguageManager.isEng ? engLvl : ruLvl + skillLevelData.level;
             }
         }
 

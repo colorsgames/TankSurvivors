@@ -48,8 +48,8 @@ MonoBehaviour:
   lifeTime: 2
   moveSpeed: 5
   sizeSpeed: 5
-  enemyDamage: {r: 1, g: 0.84705883, b: 0.23921569, a: 1}
-  playerDamage: {r: 1, g: 0.24056602, b: 0.24056602, a: 1}
+  enemyDamage: {r: 1, g: 0.8386419, b: 0, a: 1}
+  playerDamage: {r: 1, g: 0.15566039, b: 0.15566039, a: 1}
   healing: {r: 0.42133638, g: 1, b: 0.3160377, a: 1}
   maxSize: {x: 1, y: 1, z: 1}
   xMin: -0.3
@@ -115,7 +115,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -191197009990973045, guid: f4899cca87d78794bb5bcbed60d2a5d7, type: 2}
+  - {fileID: 3701986437179194510, guid: f5f7ad41822f02a4aaa378d9eaccb69f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -159,15 +159,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: -000.00
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f4899cca87d78794bb5bcbed60d2a5d7, type: 2}
-  m_sharedMaterial: {fileID: -191197009990973045, guid: f4899cca87d78794bb5bcbed60d2a5d7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f5f7ad41822f02a4aaa378d9eaccb69f, type: 2}
+  m_sharedMaterial: {fileID: 3701986437179194510, guid: f5f7ad41822f02a4aaa378d9eaccb69f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4283683071
+  m_fontColor: {r: 1, g: 0.8162908, b: 0.3254717, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

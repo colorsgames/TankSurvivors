@@ -10,10 +10,12 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject mainButtons;
     [SerializeField] private GameObject gameModes;
     [SerializeField] private GameObject skills;
+    [SerializeField] private GameObject settings;
 
     private void Start()
     {
         OpenSkills(false);
+        OpenSettings(false);
     }
 
     public void OpesGameModes(bool value)
@@ -27,6 +29,12 @@ public class MainMenuManager : MonoBehaviour
         mainButtons.SetActive(!value);
         skills.SetActive(value);
         UpgradeManager.onButtonDown.Invoke();
+    }
+
+    public void OpenSettings(bool value)
+    {
+        mainButtons.SetActive(!value);
+        settings.SetActive(value);
     }
 
     public void SetGameMinutes(int value)

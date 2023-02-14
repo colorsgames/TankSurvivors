@@ -126,6 +126,11 @@ public class AliveEntity : MonoBehaviour
         return rb.velocity;
     }
 
+    public float GetSpeed()
+    {
+        return rb.velocity.magnitude;
+    }
+
     void Movement()
     {
         velocity = rb.velocity;

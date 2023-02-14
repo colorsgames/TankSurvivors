@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1000
   startWeaponId: 0
-  moveSpeed: 500
+  moveSpeed: 550
   rotationSpeed: 20
   explosionPrefab: {fileID: 5042689738168717835, guid: 2e3fa536569659d4585589c5d8d74733, type: 3}
   weaponData: {fileID: 11400000, guid: a0915a78bed550a46a04330c9355237c, type: 2}

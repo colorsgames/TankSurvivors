@@ -26,14 +26,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text moneyTMP;
     [SerializeField] private TMP_Text statsKillingsTMP;
     [SerializeField] private TMP_Text statsMoneyTMP;
-    [SerializeField] private TMP_Text statsTotalMoneyTMP;
     [SerializeField] private TMP_Text statsMinutesTMP;
     [SerializeField] private TMP_Text statsSecondsTMP;
+    [SerializeField] private TMP_Text fpsTMP;
 
     [SerializeField] private int invokeKills;
 
     int killings;
     int moneyForThisGame;
+
+    float fps;
 
     bool isPause;
     bool isNewLVL;
@@ -49,6 +51,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        fps = 1.0f / Time.deltaTime;
+        fpsTMP.text = "FPS: " + (int)fps;
+
         if (Input.GetButtonDown("Cancel") && !isNewLVL)
         {
             if (!isPause)
@@ -84,6 +89,10 @@ public class GameManager : MonoBehaviour
 
     public void OpenNewLVLPanel(bool value)
     {
+        if (PlatformManager.Instance.IsMobile)
+        {
+            mobileController.SetActive(!value);
+        }
         newLVLPanel.SetActive(value);
         isNewLVL = value;
         UIAimController.instance.AimDeactivate(value);
@@ -98,7 +107,7 @@ public class GameManager : MonoBehaviour
     {
         if (PlatformManager.Instance.IsMobile)
         {
-            mobileController.SetActive(value);
+            mobileController.SetActive(!value);
         }
         pause.SetActive(value);
         isPause = value;
@@ -125,7 +134,6 @@ public class GameManager : MonoBehaviour
         statsMinutesTMP.text = TimeCounter.Instance.Minutes;
         statsSecondsTMP.text = TimeCounter.Instance.Seconds;
         GameCurrencyData.IncreaseTotalMoney(moneyForThisGame);
-        statsTotalMoneyTMP.text = GameCurrencyData.TotalMoney.ToString();
         GameCurrencyData.SaveMoney();
     }
 }

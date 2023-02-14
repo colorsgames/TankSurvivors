@@ -19,16 +19,19 @@ public class Player : AliveEntity
     [SerializeField] private float aimDistance;
     [SerializeField] private LayerMask aimMask;
 
-    ItemSpawnManager healingSpawn;
-    ItemSpawnManager nextWeapon;
-    ItemSpawnManager previousWeapon;
-    ItemSpawnManager decreaseShotTime;
+    [SerializeField] private float shotShakeIntensity;
+    [SerializeField] private float shotShakeTime;
+    [SerializeField] private float damageShakeIntensity;
+    [SerializeField] private float damageShakeTime;
+
+    [SerializeField] ItemSpawnManager healingSpawn;
 
     HealthBarController healthBar;
 
     Camera cam;
 
     Vector2 towerTarget;
+    Vector2 lookPos;
 
     float oldDamage;
 
@@ -43,19 +46,17 @@ public class Player : AliveEntity
     public override void Start()
     {
         healthBar = FindObjectOfType<HealthBarController>();
-        healingSpawn = GameObject.Find("HealingSpawn").GetComponent<ItemSpawnManager>();
         //nextWeapon = GameObject.Find("NextWeaponSpawn").GetComponent<ItemSpawnManager>();
         //previousWeapon = GameObject.Find("PreviousWeaponSpawn").GetComponent<ItemSpawnManager>();
         //decreaseShotTime = GameObject.Find("DecreaseShotTimeSpawn").GetComponent<ItemSpawnManager>();
 
         oldDamage = weaponData.minDamage;
         oldDelay = weaponData.delay;
+        weaponData.shotShakeIntensity = shotShakeIntensity;
+        weaponData.shotShakeTime = shotShakeTime;
         cam = Camera.main;
         //healingSpawn.SetSpawning(false);
         //previousWeapon.SetSpawning(false);
-
-        if (weaponData.delay <= weaponData.minDelay)
-            decreaseShotTime.SetSpawning(false);
 
         base.Start();
     }
@@ -92,14 +93,14 @@ public class Player : AliveEntity
     private void LateUpdate()
     {
         if (!PlatformManager.Instance.IsMobile) return;
-        Vector2 lookPos = new Vector2(jsTower.Horizontal, jsTower.Vertical);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, lookPos, aimDistance, aimMask);
-        if (hit)
-        {
-            towerTarget = hit.collider.gameObject.transform.position;
-        }
-        else
-            towerTarget = (lookPos * aimDistance) + (Vector2)transform.position;
+        lookPos = new Vector2(jsTower.Horizontal, jsTower.Vertical);
+        //RaycastHit2D hit = Physics2D.Raycast(transform.position, lookPos, aimDistance, aimMask);
+        /*        if (hit)
+                {
+                    towerTarget = hit.collider.gameObject.transform.position;
+                }
+                else*/
+        towerTarget = (lookPos * aimDistance) + (Vector2)transform.position;
 
         tower.SetTarget(towerTarget);
     }
@@ -109,6 +110,7 @@ public class Player : AliveEntity
         base.MakeDamage(damage);
         healingSpawn.SetSpawning(true);
         healthBar.UpdateValue(Health);
+        CinemachineShake.Instance.StartShake(damageShakeIntensity, damageShakeTime);
     }
 
     public override void Healing(float value)
@@ -159,12 +161,7 @@ public class Player : AliveEntity
         if (currentWeaponId > 0)
         {
             ChangeWeapon(--currentWeaponId);
-            nextWeapon.SetSpawning(true);
             //ResetWeaponData();
-        }
-        if (currentWeaponId <= 0)
-        {
-            previousWeapon.SetSpawning(false);
         }
     }
 
@@ -172,8 +169,6 @@ public class Player : AliveEntity
     {
         if (weaponData.delay > weaponData.minDelay)
             weaponData.delay -= value;
-        if (weaponData.delay <= weaponData.minDelay)
-            decreaseShotTime.SetSpawning(false);
     }
 
     void ResetWeaponData()

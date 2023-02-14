@@ -13,6 +13,7 @@ public class HealthBarController : MonoBehaviour
     [SerializeField] Vector2 offset;
 
     float oldHealth;
+    float currentTime;
 
     Camera cam;
     Player player;
@@ -26,16 +27,22 @@ public class HealthBarController : MonoBehaviour
         target = player.transform;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        Following();
+        currentTime -= Time.deltaTime;
+        if (currentTime >= 0)
+        {
+            body.SetActive(true);
+            Following();
+        }
+        else
+            body.SetActive(false);
     }
 
     public void UpdateValue(float currentHealth)
     {
         if (currentHealth <= 0) return;
-        if (!body.activeInHierarchy)
-            StartCoroutine(Show());
+        currentTime = timeView;
         image.fillAmount = currentHealth / oldHealth;
     }
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObj: {fileID: 6875203622359226574, guid: 1794472686bd65d4f8b4f736dfcbdc2d, type: 3}
   type: 1
-  maxCount: 60
+  maxCount: 20
   minKillingForSpawn: 0
   spawnRate: 10
   startSpawnRate: 2

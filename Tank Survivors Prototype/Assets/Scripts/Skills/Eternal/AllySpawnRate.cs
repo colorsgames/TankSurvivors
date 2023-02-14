@@ -14,7 +14,7 @@ namespace EternalSkills
 
         public override void Use()
         {
-            float res = (SkillsManager.Instance.AllySpawnRate / 100) * percent;
+            float res = percent;
             SkillsManager.Instance.DecreaseAllySpawnRate(res);
             currentValue = SkillsManager.Instance.PlayerDamage;
             base.Use();

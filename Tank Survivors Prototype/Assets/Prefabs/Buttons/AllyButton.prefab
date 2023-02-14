@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: 0}
+  m_AnchoredPosition: {x: 55, y: 0}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8053465454868258294
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: d486921f30552d145a31b588e45f0d44, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -111,8 +111,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 168.01, y: 30.8}
-  m_SizeDelta: {x: -336.0248, y: -68.2115}
+  m_AnchoredPosition: {x: 129.66162, y: 31}
+  m_SizeDelta: {x: -289.6732, y: -68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8053465455059411307
 CanvasRenderer:
@@ -144,8 +144,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Lvl: 15'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f4899cca87d78794bb5bcbed60d2a5d7, type: 2}
-  m_sharedMaterial: {fileID: -191197009990973045, guid: f4899cca87d78794bb5bcbed60d2a5d7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f5f7ad41822f02a4aaa378d9eaccb69f, type: 2}
+  m_sharedMaterial: {fileID: 3701986437179194510, guid: f5f7ad41822f02a4aaa378d9eaccb69f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -172,11 +172,11 @@ MonoBehaviour:
   m_fontSize: 18
   m_fontSizeBase: 18
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 24
-  m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 18
+  m_fontStyle: 17
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -238,7 +238,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8053465455340316399}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -276,15 +276,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.78039217, b: 0.5137255, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f62222b76dc34d240bf19a56ce6983bb, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -362,8 +362,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelTMP: {fileID: 8053465455059411306}
-  max: 4
+  nameTMP: {fileID: 8053465456857666313}
+  descriptionTMP: {fileID: 8053465456769695778}
+  ruLvl: "\u0423\u0440.: "
+  engLvl: 'Lvl: '
+  ruNew: "\u041D\u043E\u0432\u043E\u0435"
+  engNew: New
+  ruName: "\u0421\u041E\u042E\u0417\u041D\u0418\u041A\u0418"
+  engName: ALLIES
+  ruDescription: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442 \u043E\u0434\u043D\u043E\u0433\u043E
+    \u0441\u043E\u044E\u0437\u043D\u0438\u043A\u0430"
+  engDescription: Adds one ally
   skillLevelData: {fileID: 11400000, guid: 68e3e763f231b354386198385dbae04b, type: 2}
+  percent: 0
   allyData: {fileID: 11400000, guid: 61ca64a0b8a09c343ac1c77ebe4304e2, type: 2}
 --- !u!1 &8053465456769695788
 GameObject:
@@ -400,8 +411,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 54.396, y: -16.2}
-  m_SizeDelta: {x: -108.7921, y: -45.2122}
+  m_AnchoredPosition: {x: 47.259033, y: -16.199997}
+  m_SizeDelta: {x: -123.0661, y: -45.2122}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8053465456769695779
 CanvasRenderer:
@@ -433,8 +444,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: adds one ally
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f4899cca87d78794bb5bcbed60d2a5d7, type: 2}
-  m_sharedMaterial: {fileID: -191197009990973045, guid: f4899cca87d78794bb5bcbed60d2a5d7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f5f7ad41822f02a4aaa378d9eaccb69f, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: e587432a71d4b8a45be141dd0990b97a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -458,8 +469,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -535,8 +546,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -59.22, y: 30.8}
-  m_SizeDelta: {x: -336.0248, y: -68.2115}
+  m_AnchoredPosition: {x: -32.32248, y: 30.8}
+  m_SizeDelta: {x: -282.2297, y: -68.2115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8053465456857666318
 CanvasRenderer:
@@ -566,10 +577,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ally
+  m_text: "\u0421\u041E\u042E\u0417\u041D\u0418\u041A\u0418"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f4899cca87d78794bb5bcbed60d2a5d7, type: 2}
-  m_sharedMaterial: {fileID: -191197009990973045, guid: f4899cca87d78794bb5bcbed60d2a5d7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f5f7ad41822f02a4aaa378d9eaccb69f, type: 2}
+  m_sharedMaterial: {fileID: 3701986437179194510, guid: f5f7ad41822f02a4aaa378d9eaccb69f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -593,13 +604,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 18
   m_fontSizeBase: 20
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 24
-  m_fontStyle: 0
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 18
+  m_fontStyle: 17
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535

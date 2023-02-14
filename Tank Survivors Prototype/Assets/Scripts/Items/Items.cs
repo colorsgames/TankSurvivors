@@ -30,11 +30,11 @@ public abstract class Items : MonoBehaviour
         player = FindObjectOfType<Player>();
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         if (fly)
         {
-            transform.position = Vector3.Lerp(transform.position, player.transform.position, speed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, player.transform.position, (speed + player.GetSpeed()) * Time.deltaTime);
             Vector3 offset = player.transform.position - transform.position;
             if (offset.magnitude <= 0.5)
                 Use();

@@ -49,6 +49,7 @@ public class Weapons : MonoBehaviour
             {
                 GetShell(i);
             }
+            //CinemachineShake.Instance.StartShake(weaponData.shotShakeIntensity, weaponData.shotShakeTime);
         }
     }
 

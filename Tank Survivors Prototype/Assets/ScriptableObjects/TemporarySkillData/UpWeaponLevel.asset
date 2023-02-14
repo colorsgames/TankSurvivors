@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: UpWeaponLevel
   m_EditorClassIdentifier: 
   level: 1
-  endValue: 3
+  endValue: 4
   isMax: 0
   startOneLvl: 1

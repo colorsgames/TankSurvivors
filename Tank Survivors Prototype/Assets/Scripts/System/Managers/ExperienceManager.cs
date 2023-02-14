@@ -11,6 +11,7 @@ public class ExperienceManager : MonoBehaviour
 
     [SerializeField] private Image expBar;
     [SerializeField] private TMP_Text lvlTMP;
+    [SerializeField] private string ruLvl = "Óð.: ", engLvl = "Lvl: ";
     [SerializeField] private ParticleSystem particle;
     [SerializeField] private List<Skills> skills = new List<Skills>();
     [SerializeField] private Transform content;
@@ -35,7 +36,7 @@ public class ExperienceManager : MonoBehaviour
         currentMaxExp = startMaxExp;
         SetParticle(false);
         UpdateExpBar(currentExp);
-        lvlTMP.text = "LVL: " + lvl;
+        UpdateLevel();
     }
 
     public void AddExp(float value)
@@ -45,8 +46,9 @@ public class ExperienceManager : MonoBehaviour
         if (currentExp >= currentMaxExp)
         {
             lvl++;
-            lvlTMP.text = "LVL: " + lvl;
-            StartCoroutine(OpenLVLPanel());
+            UpdateLevel();
+            OpenLvl();
+            //StartCoroutine(OpenLVLPanel());
         }
     }
 
@@ -57,6 +59,17 @@ public class ExperienceManager : MonoBehaviour
         SetParticle(true);
 
         yield return new WaitForSecondsRealtime(delay);
+
+        GameManager.Instance.OpenNewLVLPanel(true);
+
+        SpawnSkills();
+    }
+
+    public void OpenLvl()
+    {
+        GameManager.Instance.StopTime(true);
+
+        SetParticle(true);
 
         GameManager.Instance.OpenNewLVLPanel(true);
 
@@ -76,6 +89,11 @@ public class ExperienceManager : MonoBehaviour
         currentSkills.Clear();
         GameManager.Instance.OpenNewLVLPanel(false);
         GameManager.Instance.StopTime(false);
+    }
+
+    void UpdateLevel()
+    {
+        lvlTMP.text = LanguageManager.isEng ? engLvl : ruLvl + lvl;
     }
 
     void SpawnSkills()

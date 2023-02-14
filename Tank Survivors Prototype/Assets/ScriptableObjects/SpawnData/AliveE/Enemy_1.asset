@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: Enemy_1
   m_EditorClassIdentifier: 
   spawnObj: {fileID: 4052884325411950984, guid: 866e3c0dde80c4c418c911dd7b4bf35f, type: 3}
-  maxCount: 30
+  type: 1
+  maxCount: 20
   minKillingForSpawn: 40
   spawnRate: 10
   startSpawnRate: 2
+  spawnRadius: 0
   xMin: 22
   xMax: 25
   yMin: -20
   yMax: 20
   minSpawnCount: 1
   maxSpawnCount: 10
+  spawnAllOnStart: 0
