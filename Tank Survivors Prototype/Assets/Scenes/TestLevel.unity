@@ -884,6 +884,7 @@ MonoBehaviour:
   shotShakeTime: 0.1
   damageShakeIntensity: 2
   damageShakeTime: 0.5
+  idleTowerTime: 4
   healingSpawn: {fileID: 1715786536}
 --- !u!61 &110488265
 BoxCollider2D:
@@ -5292,7 +5293,6 @@ MonoBehaviour:
   statsMoneyTMP: {fileID: 828391617}
   statsMinutesTMP: {fileID: 626161522}
   statsSecondsTMP: {fileID: 6271035}
-  fpsTMP: {fileID: 1031692105}
   invokeKills: 100
 --- !u!4 &778907975
 Transform:
@@ -6762,6 +6762,7 @@ GameObject:
   - component: {fileID: 1031692104}
   - component: {fileID: 1031692106}
   - component: {fileID: 1031692105}
+  - component: {fileID: 1031692107}
   m_Layer: 5
   m_Name: FPS
   m_TagString: Untagged
@@ -6886,6 +6887,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031692103}
   m_CullTransparentMesh: 1
+--- !u!114 &1031692107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031692103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c14583ad17cc6c46997062f03d0667b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1037872126
 GameObject:
   m_ObjectHideFlags: 0

@@ -221,7 +221,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ru
+  m_text: "\u0420\u0443\u0441"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5f7ad41822f02a4aaa378d9eaccb69f, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 7586a49e841aec7459d5370b0c670213, type: 2}
@@ -4646,12 +4646,6 @@ MonoBehaviour:
   - tmp: {fileID: 1162360527}
     ruText: "\u0412\u044B\u043A\u043B."
     engText: Off
-  - tmp: {fileID: 730860323}
-    ruText: "\u0410\u043D\u0433."
-    engText: Eng.
-  - tmp: {fileID: 21973313}
-    ruText: "\u0420\u0443\u0441."
-    engText: Ru.
 --- !u!1 &1322184507
 GameObject:
   m_ObjectHideFlags: 0

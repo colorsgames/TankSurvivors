@@ -23,6 +23,7 @@ public class Player : AliveEntity
     [SerializeField] private float shotShakeTime;
     [SerializeField] private float damageShakeIntensity;
     [SerializeField] private float damageShakeTime;
+    [SerializeField] private float idleTowerTime;
 
     [SerializeField] ItemSpawnManager healingSpawn;
 
@@ -34,8 +35,8 @@ public class Player : AliveEntity
     Vector2 lookPos;
 
     float oldDamage;
-
     float oldDelay;
+    float currentIdleTowerTime;
 
     public override void Awake()
     {
@@ -86,6 +87,7 @@ public class Player : AliveEntity
             if (jsTower.Shoot)
             {
                 weapons.StartShooting();
+                currentIdleTowerTime = idleTowerTime;
             }
         }
     }
@@ -102,7 +104,11 @@ public class Player : AliveEntity
                 else*/
         towerTarget = (lookPos * aimDistance) + (Vector2)transform.position;
 
-        tower.SetTarget(towerTarget);
+        currentIdleTowerTime -= Time.deltaTime;
+        if (currentIdleTowerTime <= 0)
+            tower.SetTarget(transform.up + transform.position);
+        else
+            tower.SetTarget(towerTarget);
     }
 
     public override void MakeDamage(float damage)

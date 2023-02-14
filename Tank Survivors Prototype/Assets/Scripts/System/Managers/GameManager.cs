@@ -28,20 +28,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text statsMoneyTMP;
     [SerializeField] private TMP_Text statsMinutesTMP;
     [SerializeField] private TMP_Text statsSecondsTMP;
-    [SerializeField] private TMP_Text fpsTMP;
 
     [SerializeField] private int invokeKills;
 
     int killings;
     int moneyForThisGame;
 
-    float fps;
-
     bool isPause;
     bool isNewLVL;
 
     private void Awake()
     {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
         Instance = this;
         Time.timeScale = 1;
         killingsTMP.text = "0";
@@ -51,9 +50,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        fps = 1.0f / Time.deltaTime;
-        fpsTMP.text = "FPS: " + (int)fps;
-
         if (Input.GetButtonDown("Cancel") && !isNewLVL)
         {
             if (!isPause)
