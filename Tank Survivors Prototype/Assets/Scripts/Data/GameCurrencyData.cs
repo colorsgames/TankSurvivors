@@ -4,21 +4,19 @@ using UnityEngine;
 //[CreateAssetMenu(fileName = "New Game Currency Data", menuName = "Game Currency Data", order = 65)]
 public class GameCurrencyData : MonoBehaviour
 {
-    public static int TotalMoney { get { return totalMoney; } }
-
-    private static int totalMoney;
+    public static int TotalMoney { get { return Progress.Instance.progressInfo.totalMoney; } }
 
     public static void IncreaseTotalMoney(int value)
     {
-        totalMoney += value;
+        Progress.Instance.progressInfo.totalMoney += value;
     }
 
     public static void DecreaseTotalMoney(int value)
     {
-        totalMoney -= value;
+        Progress.Instance.progressInfo.totalMoney -= value;
     }
 
-    public static void SaveMoney()
+/*    public static void SaveMoney()
     {
         PlayerPrefs.SetInt("TotalMoney", totalMoney);
         totalMoney = 0;
@@ -27,5 +25,5 @@ public class GameCurrencyData : MonoBehaviour
     public static void LoadMoney()
     {
         totalMoney = PlayerPrefs.GetInt("TotalMoney");
-    }
+    }*/
 }

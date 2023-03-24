@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class Language : Toggle
 {
-    public override void Awake()
+    public override void Start()
     {
-        base.Awake();
+        state = Progress.Instance.progressInfo.toggleState0;
+        base.Start();
         LanguageManager.isEng = state;
+        LanguageManager.onChangeLang.Invoke();
     }
 
     public override void Use()
     {
         base.Use();
+        Progress.Instance.progressInfo.toggleState0 = state;
         LanguageManager.isEng = state;
         LanguageManager.onChangeLang.Invoke();
+        Progress.Instance.Save();
     }
 }

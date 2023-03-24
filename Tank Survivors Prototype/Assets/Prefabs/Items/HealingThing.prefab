@@ -88,6 +88,7 @@ MonoBehaviour:
   destroyTime: 30
   speed: 10
   sizeSpeed: 10
+  sound: {fileID: 8300000, guid: 1bed4a3be984a81409be6e639b4c0c0d, type: 3}
   healValue: 500
 --- !u!1 &3967452968000525732
 GameObject:

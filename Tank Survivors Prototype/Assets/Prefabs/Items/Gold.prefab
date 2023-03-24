@@ -87,6 +87,7 @@ MonoBehaviour:
   destroyTime: 120
   speed: 10
   sizeSpeed: 6
+  sound: {fileID: 8300000, guid: 996ee82cad31e794a9b0ff746a9833d0, type: 3}
   maxMoney: 1
 --- !u!1 &4526901685906115008
 GameObject:

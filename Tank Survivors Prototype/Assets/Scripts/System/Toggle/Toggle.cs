@@ -10,20 +10,16 @@ public class Toggle : MonoBehaviour
 
     [SerializeField] private Color off, on;
 
-    protected bool state = true;
+    [SerializeField] protected int id;
 
-    int intState;
+    //int intState;
 
-    public virtual void Awake()
+    protected bool state;
+
+    public virtual void Start()
     {
         //PlayerPrefs.SetInt("State" + gameObject.name, 1);
-        intState = PlayerPrefs.GetInt("State" + gameObject.name);
-        if(intState == 1)
-        {
-            state = true;
-        }
-        else 
-            state = false;
+        //intState = PlayerPrefs.GetInt("State" + gameObject.name);
 
         UpdateVis();
     }
@@ -33,14 +29,14 @@ public class Toggle : MonoBehaviour
         if (state)
         {
             state = false;
-            PlayerPrefs.SetInt("State" + gameObject.name, 0);
+            //PlayerPrefs.SetInt("State" + gameObject.name, 0);
             state_1.color = off;
             state_2.color = on;
         }
         else
         {
             state = true;
-            PlayerPrefs.SetInt("State" + gameObject.name, 1);
+            //PlayerPrefs.SetInt("State" + gameObject.name, 1);
             state_1.color = on;
             state_2.color = off;
         }

@@ -68,6 +68,8 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 8cd273e5fd70eb04e9a63f81a18057e1, type: 3}
     - {fileID: 2800000, guid: 7d425c9182bc5fc428cb641179e78db2, type: 3}
     - {fileID: 2800000, guid: ec6b52461c7185d42b3ac05901e8b63b, type: 3}
+    - {fileID: 2800000, guid: f3de0e9631f7af64ebc93d8acb7057cc, type: 3}
+    - {fileID: 2800000, guid: c19b7b969c6e64e4396cae1c3ec15eab, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -87,6 +89,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ec6b52461c7185d42b3ac05901e8b63b, type: 3}
   - {fileID: 21300000, guid: 4003347694369f34497001d7d2dca6eb, type: 3}
   - {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
+  - {fileID: 21300000, guid: c19b7b969c6e64e4396cae1c3ec15eab, type: 3}
+  - {fileID: 21300000, guid: f3de0e9631f7af64ebc93d8acb7057cc, type: 3}
   - {fileID: 21300000, guid: 30309d081def4cf4fa9f9a95675611e1, type: 3}
   - {fileID: 21300000, guid: 18f51168b9cd7764c9c8879f6e69f166, type: 3}
   - {fileID: 21300000, guid: 5f349b68bc545f3499bc75fe4614962f, type: 3}
@@ -112,6 +116,8 @@ SpriteAtlas:
   - Shell
   - Cactus
   - DesertClear
+  - ProjectileWhite
+  - Pusher
   - Expa
   - Body
   - Particle

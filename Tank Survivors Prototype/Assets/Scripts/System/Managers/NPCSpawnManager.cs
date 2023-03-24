@@ -123,7 +123,7 @@ public class NPCSpawnManager : MonoBehaviour
             if (type == SpawnType.circle)
             {
                 int a = 360 / count * i;
-                pos = RandCircle(transform.position, spawnRadius, a);
+                pos = RandCircle(player.position, spawnRadius, a);
             }
             else
             {

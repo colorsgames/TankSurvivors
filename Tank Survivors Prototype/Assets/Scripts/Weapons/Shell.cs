@@ -10,6 +10,8 @@ public class Shell : MonoBehaviour
     [SerializeField] private float deadRad;
     [SerializeField] private float speed;
 
+    [SerializeField] private AudioClip sound;
+
     private IObjectPool<Shell> pool;
 
     private Rigidbody2D rb;
@@ -71,7 +73,7 @@ public class Shell : MonoBehaviour
     void Dead()
     {
         trail.Clear();
-        if(!rb.isKinematic)
+        if (!rb.isKinematic)
             pool.Release(this);
     }
 
@@ -80,6 +82,7 @@ public class Shell : MonoBehaviour
         if (collision.GetComponent<AliveEntity>())
         {
             collision.GetComponent<AliveEntity>().MakeDamage(damage);
+            SoundManager.Instance.PlayAudioClip(sound);
             if (collision.GetComponent<Enemy>())
             {
                 PopupTextManager.Instance.SpawnDamageText(transform.position, ColorType.enemyDamage, $"-{damage.ToString("0.0")}");

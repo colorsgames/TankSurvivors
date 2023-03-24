@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   endValue: 4
-  isMax: 0
+  isMax: 1
   startOneLvl: 0

@@ -9,12 +9,12 @@ public class SkillsManager : MonoBehaviour
 
     public static UnityEvent StartGame = new UnityEvent();
 
-    public float AllyHeath { get { return currentAllyHealth; } }
-    public float AllySpawnRate { get { return currentAllySpawnRate; } }
-    public float PlayerHealth { get { return currentPlayerHealth; } }
-    public float PlayerDamage { get { return currentPlayerDamage; } }
-    public float ShotDelay { get { return currentShotDelay; } }
-    public float Speed { get { return currentSpeed; } }
+    public float AllyHeath { get { return Progress.Instance.progressInfo.currentAllyHealth; } }
+    public float AllySpawnRate { get { return Progress.Instance.progressInfo.currentAllySpawnRate; } }
+    public float PlayerHealth { get { return Progress.Instance.progressInfo.currentPlayerHealth; } }
+    public float PlayerDamage { get { return Progress.Instance.progressInfo.currentPlayerDamage; } }
+    public float ShotDelay { get { return Progress.Instance.progressInfo.currentShotDelay; } }
+    public float Speed { get { return Progress.Instance.progressInfo.currentSpeed; } }
 
     [SerializeField] private SpawnAliveEntityData allySpawnData;
     [SerializeField] private AliveEntityData ally;
@@ -22,27 +22,27 @@ public class SkillsManager : MonoBehaviour
     [SerializeField] private WeaponData weaponData;
     [SerializeField] private SkillLevelData[] tempSkills;
 
-    [SerializeField] private int allyCount = 0;
+    /*[SerializeField] private int allyCount = 0;
     [SerializeField] private float allyHealth = 1000;
     [SerializeField] private float allySpawnRate = 30;
     [SerializeField] private float playerHealth = 1000;
     [SerializeField] private float playerDamage = 20;
     [SerializeField] private float shotDelay = 0.5f;
-    [SerializeField] private float speed = 500;
+    [SerializeField] private float speed = 500;*/
 
-    float currentAllyHealth;
+/*    float currentAllyHealth;
     float currentAllySpawnRate;
     float currentPlayerHealth;
     float currentPlayerDamage;
     float currentShotDelay;
-    float currentSpeed;
+    float currentSpeed;*/
 
     private void Awake()
     {
         Instance = this;
 
         //PlayerPrefs.DeleteAll();
-        if (PlayerPrefs.GetFloat("allyHealth") > 0)
+        /*if (PlayerPrefs.GetFloat("allyHealth") > 0)
             currentAllyHealth = PlayerPrefs.GetFloat("allyHealth");
         else
             currentAllyHealth = allyHealth;
@@ -65,7 +65,7 @@ public class SkillsManager : MonoBehaviour
         if (PlayerPrefs.GetFloat("speed") > 0)
             currentSpeed = PlayerPrefs.GetFloat("speed");
         else
-            currentSpeed = speed;
+            currentSpeed = speed;*/
     }
 
     public void SetSkills()
@@ -75,50 +75,68 @@ public class SkillsManager : MonoBehaviour
         {
             item.ResetValue();
         }
-        allySpawnData.maxCount = allyCount;
-        weaponData.minDamage = currentPlayerDamage;
-        weaponData.delay = currentShotDelay;
-        ally.maxHealth = currentAllyHealth;
-        player.maxHealth = currentPlayerHealth;
-        allySpawnData.spawnRate = currentAllySpawnRate;
-        ally.moveSpeed = currentSpeed + 100;
-        player.moveSpeed = currentSpeed;
+        allySpawnData.maxCount = 0;
+        weaponData.minDamage = Progress.Instance.progressInfo.currentPlayerDamage;
+        weaponData.delay = Progress.Instance.progressInfo.currentShotDelay;
+        ally.maxHealth = Progress.Instance.progressInfo.currentAllyHealth;
+        player.maxHealth = Progress.Instance.progressInfo.currentPlayerHealth;
+        allySpawnData.spawnRate = Progress.Instance.progressInfo.currentAllySpawnRate;
+        ally.moveSpeed = Progress.Instance.progressInfo.currentSpeed + 100;
+        player.moveSpeed = Progress.Instance.progressInfo.currentSpeed;
 
     }
 
     public void IncreaseAllyHealth(float value)
     {
-        currentAllyHealth += value;
-        PlayerPrefs.SetFloat("allyHealth", currentAllyHealth);
+        Progress.Instance.progressInfo.currentAllyHealth += value;
+#if UNITY_WEBGL
+        Progress.Instance.Save();
+#endif
+        //PlayerPrefs.SetFloat("allyHealth", currentAllyHealth);
     }
 
     public void IncreaseDamage(float value)
     {
-        currentPlayerDamage += value;
-        PlayerPrefs.SetFloat("damage", currentPlayerDamage);
+        Progress.Instance.progressInfo.currentPlayerDamage += value;
+#if UNITY_WEBGL
+        Progress.Instance.Save();
+#endif
+        //PlayerPrefs.SetFloat("damage", currentPlayerDamage);
     }
 
     public void IncreaseHealth(float value)
     {
-        currentPlayerHealth += value;
-        PlayerPrefs.SetFloat("health", currentPlayerHealth);
+        Progress.Instance.progressInfo.currentPlayerHealth += value;
+#if UNITY_WEBGL
+        Progress.Instance.Save();
+#endif
+        //PlayerPrefs.SetFloat("health", currentPlayerHealth);
     }
 
     public void UpSpeed(float value)
     {
-        currentSpeed += value;
-        PlayerPrefs.SetFloat("speed", currentSpeed);
+        Progress.Instance.progressInfo.currentSpeed += value;
+#if UNITY_WEBGL
+        Progress.Instance.Save();
+#endif
+        //PlayerPrefs.SetFloat("speed", currentSpeed);
     }
 
     public void DecreaseDelay(float value)
     {
-        currentShotDelay -= value;
-        PlayerPrefs.SetFloat("delay", currentShotDelay);
+        Progress.Instance.progressInfo.currentShotDelay -= value;
+#if UNITY_WEBGL
+        Progress.Instance.Save();
+#endif
+        //PlayerPrefs.SetFloat("delay", currentShotDelay);
     }
 
     public void DecreaseAllySpawnRate(float value)
     {
-        currentAllySpawnRate -= value;
-        PlayerPrefs.SetFloat("allySpawnRate", currentAllySpawnRate);
+        Progress.Instance.progressInfo.currentAllySpawnRate -= value;
+#if UNITY_WEBGL
+        Progress.Instance.Save();
+#endif
+        //PlayerPrefs.SetFloat("allySpawnRate", currentAllySpawnRate);
     }
 }

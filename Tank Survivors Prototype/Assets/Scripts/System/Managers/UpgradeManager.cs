@@ -18,6 +18,8 @@ public class UpgradeManager : MonoBehaviour, IPointerDownHandler
     [SerializeField] private TMP_Text buttonTextTMP;
     [SerializeField] private TMP_Text totalMoneyTMP;
 
+    [SerializeField] private string ruText = "ְּÊׁ.", engText = "FULL";
+
     [SerializeField] private Color green, red;
 
     [SerializeField] private Button button;
@@ -54,7 +56,7 @@ public class UpgradeManager : MonoBehaviour, IPointerDownHandler
 
     void UpdateMoneyText()
     {
-        GameCurrencyData.LoadMoney();
+        //GameCurrencyData.LoadMoney();
         totalMoneyTMP.text = GameCurrencyData.TotalMoney.ToString();
     }
 
@@ -63,7 +65,7 @@ public class UpgradeManager : MonoBehaviour, IPointerDownHandler
         if (selectedSkills.StepsExhausted)
         {
             button.enabled = false;
-            buttonTextTMP.text = "FULL";
+            buttonTextTMP.text = LanguageManager.isEng ? engText : ruText;
             buttonTextTMP.color = Color.white;
         }
         else if (selectedSkills.InsufficientFunds)
@@ -80,7 +82,7 @@ public class UpgradeManager : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    void Clear()
+    public void Clear()
     {
         button.enabled = false;
         buttonTextTMP.text = String.Empty;

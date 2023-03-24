@@ -19,8 +19,9 @@ namespace EternalSkills
         [SerializeField] private string ruLvl = "Óð.: ", engLvl = "Lvl: ";
         [SerializeField] private string ruDescription, engDescription;
 
+        [SerializeField] private int id;
         [SerializeField] private float endValue;
-        [SerializeField] private int startPrice = 10;
+        [SerializeField] protected int startPrice = 10;
         [SerializeField] private float priceIncreaseCoefficient = 1.5f;
 
         [SerializeField] private bool isDecreaseValue;
@@ -30,37 +31,36 @@ namespace EternalSkills
 
         protected float currentValue;
 
-        int currentPrice;
+        protected int currentPrice;
 
-        private void Awake()
+        void Awake()
         {
             UpgradeManager.onButtonDown.AddListener(FoundsCheck);
             SkillsManager.StartGame.AddListener(SetSkillData);
             LanguageManager.onChangeLang.AddListener(UpdateLevel);
+
+
         }
 
         public virtual void Start()
         {
-            level = PlayerPrefs.GetInt("step" + gameObject.name);
+            //level = PlayerPrefs.GetInt("step" + gameObject.name);
             UpdateLevel();
-            currentPrice = PlayerPrefs.GetInt(gameObject.name);
-
-            if (currentPrice == 0)
-            {
-                currentPrice = startPrice;
-            }
+            //currentPrice = PlayerPrefs.GetInt(gameObject.name);
 
             StepCheck();
             FoundsCheck();
+
+            MainMenuManager.Instance.IStart();
         }
 
         public virtual void Use()
         {
             level++;
             UpdateLevel();
-            PlayerPrefs.SetInt("step" + gameObject.name, level);
+            //PlayerPrefs.SetInt("step" + gameObject.name, level);
             GameCurrencyData.DecreaseTotalMoney(currentPrice);
-            GameCurrencyData.SaveMoney();
+            //GameCurrencyData.SaveMoney();
             NextPrice();
             StepCheck();
         }
@@ -77,7 +77,7 @@ namespace EternalSkills
         public void NextPrice()
         {
             currentPrice += (int)(currentPrice / priceIncreaseCoefficient);
-            PlayerPrefs.SetInt(gameObject.name, currentPrice);
+            //PlayerPrefs.SetInt(gameObject.name, currentPrice);
         }
 
         public void ShowIntfo()
@@ -87,7 +87,7 @@ namespace EternalSkills
 
         void UpdateLevel()
         {
-            lvlTMP.text = LanguageManager.isEng ? engLvl : ruLvl + level;
+            lvlTMP.text = (LanguageManager.isEng ? engLvl : ruLvl) + level;
         }
 
         void StepCheck()

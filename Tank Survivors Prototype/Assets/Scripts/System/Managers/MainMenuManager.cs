@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public static bool isMenu;
+
+    public static MainMenuManager Instance;
+
     [SerializeField] private GameModeData gameMode;
 
     [SerializeField] private GameObject mainButtons;
@@ -12,10 +16,30 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject skills;
     [SerializeField] private GameObject settings;
 
+    int startSkillsCount;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
-        OpenSkills(false);
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
         OpenSettings(false);
+        isMenu = true;
+    }
+
+    public void IStart()
+    {
+        startSkillsCount++;
+        if(startSkillsCount >= 6)
+        {
+            OpenSkills(false);
+            ADManager.Instance.ShowAD();
+            startSkillsCount = 0;
+        }
     }
 
     public void OpesGameModes(bool value)
@@ -28,6 +52,7 @@ public class MainMenuManager : MonoBehaviour
     {
         mainButtons.SetActive(!value);
         skills.SetActive(value);
+        UpgradeManager.Instance.Clear();
         UpgradeManager.onButtonDown.Invoke();
     }
 
@@ -46,6 +71,7 @@ public class MainMenuManager : MonoBehaviour
     public void StartGame()
     {
         SkillsManager.Instance.SetSkills();
+        isMenu = false;
         SceneManager.LoadScene(1);
     }
 

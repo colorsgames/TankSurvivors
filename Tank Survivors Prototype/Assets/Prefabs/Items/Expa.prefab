@@ -87,6 +87,7 @@ MonoBehaviour:
   destroyTime: 120
   speed: 10
   sizeSpeed: 6
+  sound: {fileID: 8300000, guid: 048d24b7ff2980d4da0c4f4e2cba8b20, type: 3}
   expa: 1
 --- !u!1 &4526901685906115008
 GameObject:

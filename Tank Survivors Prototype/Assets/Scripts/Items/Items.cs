@@ -11,6 +11,8 @@ public abstract class Items : MonoBehaviour
     [SerializeField] private float speed = 5;
     [SerializeField] private float sizeSpeed = 5;
 
+    [SerializeField] private AudioClip sound;
+
     protected Player player;
 
     ItemSpawnManager spawnManager;
@@ -56,6 +58,7 @@ public abstract class Items : MonoBehaviour
 
     public virtual void Use()
     {
+        SoundManager.Instance.PlayAudioClip(sound);
         Dead();
     }
 

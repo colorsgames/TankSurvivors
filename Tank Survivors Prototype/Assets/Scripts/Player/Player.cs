@@ -127,9 +127,9 @@ public class Player : AliveEntity
             healingSpawn.SetSpawning(false);
     }
 
-    public override void Dead()
+    public override void Destroy()
     {
-        base.Dead();
+        base.Destroy();
         GameManager.Instance.OpenResults();
     }
 

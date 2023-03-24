@@ -15,7 +15,8 @@ MonoBehaviour:
   shell: {fileID: 233585819823689110, guid: 4f13da3b29914f84e8360cdb04d1660d, type: 3}
   minDamage: 20
   maxDamage: 10
-  delay: 0.12
+  delay: 0.5
   minDelay: 0.1
   shotShakeIntensity: 1
   shotShakeTime: 0.1
+  shot: {fileID: 8300000, guid: 31e798f7d3189c8449a11ce98ac9a981, type: 3}

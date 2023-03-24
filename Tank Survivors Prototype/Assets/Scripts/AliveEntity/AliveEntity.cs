@@ -8,17 +8,13 @@ public class AliveEntity : MonoBehaviour
     public bool Alive { get { return alive; } set { alive = value; } }
     public float Health { get { return currentHealth; } }
     public Rigidbody2D Rb { get { return rb; } }
-    [HideInInspector]public Tower tower;
-    /*    [SerializeField] private int startWeaponId;
-        [SerializeField] private int maxHealth;
 
-        [SerializeField] private GameObject explosionPrefab;
+    [HideInInspector] public Tower tower;
 
-        [SerializeField] protected WeaponData weaponData;
-
-        [SerializeField] private float speed;
-        [SerializeField] private float rotationSpeed = 20;*/
     [SerializeField] protected AliveEntityData aliveEntityData;
+
+    [SerializeField] AudioSource explosionSource;
+    [SerializeField] AudioClip explosionClip;
 
     protected WeaponData weaponData;
 
@@ -31,6 +27,8 @@ public class AliveEntity : MonoBehaviour
     protected int currentWeaponId;
     protected Weapons weapons;
     protected Vector2 movementInput;
+
+    private AudioSource source;
 
     int maxWeaponId;
 
@@ -46,8 +44,10 @@ public class AliveEntity : MonoBehaviour
 
     public virtual void Awake()
     {
-        tower = GetComponentInChildren<Tower>();
+        if (GetComponentInChildren<Tower>())
+            tower = GetComponentInChildren<Tower>();
         rb = GetComponent<Rigidbody2D>();
+        source = GetComponent<AudioSource>();
         currentHealth = aliveEntityData.maxHealth;
         rotationSpeed = aliveEntityData.rotationSpeed;
         weaponData = aliveEntityData.weaponData;
@@ -56,7 +56,8 @@ public class AliveEntity : MonoBehaviour
 
     public virtual void Start()
     {
-        MaxWeaponId = tower.transform.childCount - 1;
+        if (tower)
+            MaxWeaponId = tower.transform.childCount - 1;
         ChangeWeapon(aliveEntityData.startWeaponId);
     }
 
@@ -75,13 +76,19 @@ public class AliveEntity : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            if (alive) Dead();
+            if (alive) Destroy();
         }
     }
 
-    public virtual void Dead()
+    public virtual void Destroy()
+    {
+        Dead();
+    }
+
+    public void Dead()
     {
         Instantiate(aliveEntityData.explosionPrefab, transform.position, quaternion.identity);
+        explosionSource.PlayOneShot(explosionClip);
         alive = false;
     }
 
@@ -107,9 +114,10 @@ public class AliveEntity : MonoBehaviour
 
     public void ChangeWeapon(int id)
     {
+        if (id == -1) return;
         for (int i = 0; i < tower.transform.childCount; i++)
         {
-            if(id == i)
+            if (id == i)
             {
                 tower.transform.GetChild(i).gameObject.SetActive(true);
                 weapons = tower.transform.GetChild(i).GetComponent<Weapons>();
@@ -136,6 +144,10 @@ public class AliveEntity : MonoBehaviour
         velocity = rb.velocity;
 
         movementInput = Vector2.ClampMagnitude(movementInput, 1);
+
+        if (!source.isPlaying)
+            source.Play();
+        source.pitch = 1 + movementInput.magnitude;
 
         if (!alive) movementInput = Vector2.zero;
 

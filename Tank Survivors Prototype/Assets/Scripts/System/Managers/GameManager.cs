@@ -31,16 +31,19 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int invokeKills;
 
+    [SerializeField] private AudioClip newLVLSound;
+
     int killings;
     int moneyForThisGame;
 
     bool isPause;
+    bool isEnd;
     bool isNewLVL;
-
+    //bool isStopTime;
     private void Awake()
     {
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 60;
+        //QualitySettings.vSyncCount = 0;
+        //Application.targetFrameRate = 60;
         Instance = this;
         Time.timeScale = 1;
         killingsTMP.text = "0";
@@ -50,13 +53,27 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Cancel") && !isNewLVL)
+        if ((Input.GetButtonDown("Cancel") && !isNewLVL) && !isEnd)
         {
             if (!isPause)
                 Pause(true);
             else
                 Pause(false);
         }
+
+/*        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (!isStopTime)
+            {
+                StopTime(true);
+                isStopTime = true;
+            }
+            else
+            {
+                isStopTime = false;
+                StopTime(false);
+            }
+        }*/
     }
 
     public void UpKillings()
@@ -76,11 +93,13 @@ public class GameManager : MonoBehaviour
         resultsPanel.SetActive(true);
 
         pause.SetActive(false);
-        UpdateStats();
+
+        isEnd = true;
 
         UIAimController.instance.AimDeactivate(true);
         counters.SetActive(false);
         Time.timeScale = 0;
+        UpdateStats();
     }
 
     public void OpenNewLVLPanel(bool value)
@@ -91,11 +110,17 @@ public class GameManager : MonoBehaviour
         }
         newLVLPanel.SetActive(value);
         isNewLVL = value;
+        if (value)
+        {
+            SoundManager.Instance.PlayAudioClip(newLVLSound);
+            ADManager.Instance.ShowAD();
+        }
         UIAimController.instance.AimDeactivate(value);
     }
 
     public void ExitInMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
@@ -130,6 +155,6 @@ public class GameManager : MonoBehaviour
         statsMinutesTMP.text = TimeCounter.Instance.Minutes;
         statsSecondsTMP.text = TimeCounter.Instance.Seconds;
         GameCurrencyData.IncreaseTotalMoney(moneyForThisGame);
-        GameCurrencyData.SaveMoney();
+        Progress.Instance.Save();
     }
 }

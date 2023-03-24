@@ -11,4 +11,6 @@ public class WeaponData : ScriptableObject
     public float minDelay;
     public float shotShakeIntensity;
     public float shotShakeTime;
+
+    public AudioClip shot;
 }

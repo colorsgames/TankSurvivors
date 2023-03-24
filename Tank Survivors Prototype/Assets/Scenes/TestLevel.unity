@@ -353,6 +353,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1495171651}
+        m_TargetAssemblyTypeName: ButtonSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &6724109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,7 +562,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a0ba4c63724837b489c7a52e49bd4dc1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -764,7 +776,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -814,6 +826,7 @@ GameObject:
   - component: {fileID: 110488262}
   - component: {fileID: 110488263}
   - component: {fileID: 110488265}
+  - component: {fileID: 110488266}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -874,6 +887,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower: {fileID: 0}
   aliveEntityData: {fileID: 11400000, guid: 165ad618a02bdb247b232ce76348aa61, type: 2}
+  explosionSource: {fileID: 1458014762}
+  explosionClip: {fileID: 8300000, guid: 988b9b39d75956d45b1f1f7c7de4e679, type: 3}
   jsMovement: {fileID: 4978431146396750649}
   jsTower: {fileID: 788356014587591071}
   aimDistance: 10
@@ -882,7 +897,7 @@ MonoBehaviour:
     m_Bits: 128
   shotShakeIntensity: 1
   shotShakeTime: 0.1
-  damageShakeIntensity: 2
+  damageShakeIntensity: 4
   damageShakeTime: 0.5
   idleTowerTime: 4
   healingSpawn: {fileID: 1715786536}
@@ -912,6 +927,102 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.85, y: 1}
   m_EdgeRadius: 0
+--- !u!82 &110488266
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110488260}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -4002807543156425701, guid: 83cf57563660b51478c23f3336ea0a75, type: 2}
+  m_audioClip: {fileID: 8300000, guid: dcb173201a24d5b4da9f621a3676fcee, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 2.184229
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &112428902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1218,7 +1329,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1435,6 +1546,7 @@ GameObject:
   - component: {fileID: 240334991}
   - component: {fileID: 240334990}
   - component: {fileID: 240334992}
+  - component: {fileID: 240334993}
   m_Layer: 0
   m_Name: SpawnManager
   m_TagString: Untagged
@@ -1509,6 +1621,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnData: {fileID: 11400000, guid: 61ca64a0b8a09c343ac1c77ebe4304e2, type: 2}
+--- !u!114 &240334993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240334987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 492546a104472ce4ea53d2175606fc79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnData: {fileID: 11400000, guid: 3b631ed9b67b23a49bf0d29e802028f2, type: 2}
 --- !u!1 &246060270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,6 +1722,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Pause
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1495171651}
+        m_TargetAssemblyTypeName: ButtonSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1834,7 +1971,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2132,7 +2269,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 434e74f53b8deff4583cc94e982fbbf8, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2518,7 +2655,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e1c93f0fc51735b40b54dfc1d239f9e8, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2616,7 +2753,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2714,7 +2851,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2812,7 +2949,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3032,7 +3169,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e1c93f0fc51735b40b54dfc1d239f9e8, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3139,7 +3276,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3311,7 +3448,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3409,7 +3546,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3547,7 +3684,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 434e74f53b8deff4583cc94e982fbbf8, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4106,7 +4243,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 434e74f53b8deff4583cc94e982fbbf8, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4441,7 +4578,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e1c93f0fc51735b40b54dfc1d239f9e8, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4537,7 +4674,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5294,6 +5431,7 @@ MonoBehaviour:
   statsMinutesTMP: {fileID: 626161522}
   statsSecondsTMP: {fileID: 6271035}
   invokeKills: 100
+  newLVLSound: {fileID: 8300000, guid: 31aee27fa4fdf4a42936a67b7d9cc933, type: 3}
 --- !u!4 &778907975
 Transform:
   m_ObjectHideFlags: 0
@@ -6426,7 +6564,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e1c93f0fc51735b40b54dfc1d239f9e8, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6527,7 +6665,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6769,7 +6907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1031692104
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7146,6 +7284,7 @@ MonoBehaviour:
   - {fileID: 313212743}
   - {fileID: 1764984396}
   - {fileID: 307425561}
+  source: {fileID: 1458014762}
 --- !u!1001 &1077130917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12069,6 +12208,7 @@ MonoBehaviour:
   spawnPoint:
   - {fileID: 587000477}
   - {fileID: 1185553006}
+  source: {fileID: 1458014762}
 --- !u!1 &1103239542
 GameObject:
   m_ObjectHideFlags: 0
@@ -12732,7 +12872,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -13053,6 +13193,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 748799715363410606, guid: d0c96ff09ac4bd3498b7decd7b03e18e, type: 3}
   m_PrefabInstance: {fileID: 1353162491}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1366748672
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1366748674}
+  - component: {fileID: 1366748673}
+  m_Layer: 0
+  m_Name: PlatformManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1366748673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366748672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0b7e0f3950ea848a3c233734591ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mobileControllers: {fileID: 1535264562}
+  aim: {fileID: 38383549}
+--- !u!4 &1366748674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366748672}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1384673470
 GameObject:
   m_ObjectHideFlags: 0
@@ -13140,6 +13326,18 @@ MonoBehaviour:
       - m_Target: {fileID: 778907974}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: OpenResults
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1495171651}
+        m_TargetAssemblyTypeName: ButtonSound, Assembly-CSharp
+        m_MethodName: PlaySound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13456,7 +13654,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -13553,6 +13751,7 @@ GameObject:
   - component: {fileID: 1451018278}
   - component: {fileID: 1451018280}
   - component: {fileID: 1451018279}
+  - component: {fileID: 1451018281}
   m_Layer: 5
   m_Name: Body
   m_TagString: Untagged
@@ -13620,6 +13819,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451018277}
   m_CullTransparentMesh: 1
+--- !u!114 &1451018281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451018277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 50, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &1458014759
 GameObject:
   m_ObjectHideFlags: 0
@@ -13630,6 +13843,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1458014760}
   - component: {fileID: 1458014761}
+  - component: {fileID: 1458014762}
   m_Layer: 6
   m_Name: Tower
   m_TagString: Untagged
@@ -13669,6 +13883,102 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 20
+--- !u!82 &1458014762
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458014759}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -4002807543156425701, guid: 83cf57563660b51478c23f3336ea0a75, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 2.184229
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1463240081
 GameObject:
   m_ObjectHideFlags: 0
@@ -14081,12 +14391,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1495171646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b0b7e0f3950ea848a3c233734591ddc, type: 3}
+  m_Script: {fileID: 11500000, guid: 87c5e2453513cd34cb5091ac2e5fa4e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mobileControllers: {fileID: 1535264562}
-  aim: {fileID: 38383549}
-  isMobile: 1
 --- !u!1 &1501885395
 GameObject:
   m_ObjectHideFlags: 0
@@ -14139,6 +14446,7 @@ MonoBehaviour:
   - {fileID: 1985179077}
   - {fileID: 666692240}
   - {fileID: 956420031}
+  source: {fileID: 1458014762}
 --- !u!1 &1535264562
 GameObject:
   m_ObjectHideFlags: 0
@@ -14154,7 +14462,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1535264563
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14512,7 +14820,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 434e74f53b8deff4583cc94e982fbbf8, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -14944,7 +15252,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -16042,6 +16350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint:
   - {fileID: 374049492}
+  source: {fileID: 1458014762}
 --- !u!1 &1874680424
 GameObject:
   m_ObjectHideFlags: 0
@@ -16375,7 +16684,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -16644,7 +16953,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -16803,6 +17112,18 @@ MonoBehaviour:
       - m_Target: {fileID: 778907974}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ExitInMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1495171651}
+        m_TargetAssemblyTypeName: ButtonSound, Assembly-CSharp
+        m_MethodName: PlaySound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17210,7 +17531,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -17312,7 +17633,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d06c8e8669f8f254facda6cef0dcae92, type: 3}
-  m_Color: {r: 0.8113208, g: 0.7845319, b: 0.7845319, a: 1}
+  m_Color: {r: 0.8117647, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

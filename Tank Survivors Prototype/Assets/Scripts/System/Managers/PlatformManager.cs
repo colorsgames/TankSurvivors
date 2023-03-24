@@ -6,12 +6,11 @@ public class PlatformManager : MonoBehaviour
 {
     public static PlatformManager Instance;
 
-    public bool IsMobile { get { return isMobile; } }
+    public bool IsMobile { get { return Platform.IsMobile; } }
 
     [SerializeField] private GameObject mobileControllers;
     [SerializeField] private GameObject aim;
 
-    [SerializeField] private bool isMobile;
 
     private void Awake()
     {
@@ -20,10 +19,14 @@ public class PlatformManager : MonoBehaviour
 
     private void Start()
     {
-        if (isMobile)
+        if (Platform.IsMobile)
         {
             mobileControllers.SetActive(true);
             aim.SetActive(false);
+        }
+        else
+        {
+            mobileControllers.SetActive(false);
         }
     }
 }

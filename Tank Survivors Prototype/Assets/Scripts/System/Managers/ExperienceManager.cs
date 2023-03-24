@@ -67,6 +67,9 @@ public class ExperienceManager : MonoBehaviour
 
     public void OpenLvl()
     {
+        if (PlatformManager.Instance.IsMobile)
+            Joystick.Instance.UpPointer();
+
         GameManager.Instance.StopTime(true);
 
         SetParticle(true);
@@ -93,7 +96,7 @@ public class ExperienceManager : MonoBehaviour
 
     void UpdateLevel()
     {
-        lvlTMP.text = LanguageManager.isEng ? engLvl : ruLvl + lvl;
+        lvlTMP.text = (LanguageManager.isEng ? engLvl : ruLvl) + lvl;
     }
 
     void SpawnSkills()
@@ -105,7 +108,7 @@ public class ExperienceManager : MonoBehaviour
                 skills.Remove(skills[i]);
             }
         }
-        bool[] busyId  = new bool[skills.Count];
+        bool[] busyId = new bool[skills.Count];
 
         if (skills.Count > 3)
         {

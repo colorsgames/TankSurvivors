@@ -17,3 +17,6 @@ MonoBehaviour:
   maxDamage: 10
   delay: 0.5
   minDelay: 0.1
+  shotShakeIntensity: 0
+  shotShakeTime: 0
+  shot: {fileID: 8300000, guid: 31e798f7d3189c8449a11ce98ac9a981, type: 3}

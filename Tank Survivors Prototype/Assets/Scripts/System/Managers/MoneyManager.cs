@@ -10,7 +10,7 @@ public class MoneyManager : MonoBehaviour
     private void Start()
     {
         //PlayerPrefs.DeleteAll();
-        GameCurrencyData.LoadMoney();
+        //GameCurrencyData.LoadMoney();
         UpdateMoneyText();
         UpgradeManager.onButtonDown.AddListener(UpdateMoneyText);
     }

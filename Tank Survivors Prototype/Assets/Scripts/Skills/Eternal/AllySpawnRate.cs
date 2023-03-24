@@ -8,16 +8,22 @@ namespace EternalSkills
     {
         public override void Start()
         {
-            currentValue = SkillsManager.Instance.PlayerDamage;
+            if (Progress.Instance.progressInfo.priceSkill1 == 0)
+                Progress.Instance.progressInfo.priceSkill1 = startPrice;
+            level = Progress.Instance.progressInfo.levelSkill1;
+            currentPrice = Progress.Instance.progressInfo.priceSkill1;
+            currentValue = SkillsManager.Instance.AllySpawnRate;
             base.Start();
         }
 
         public override void Use()
         {
+            base.Use();
+            Progress.Instance.progressInfo.levelSkill1 = level;
+            Progress.Instance.progressInfo.priceSkill1 = currentPrice;
             float res = percent;
             SkillsManager.Instance.DecreaseAllySpawnRate(res);
-            currentValue = SkillsManager.Instance.PlayerDamage;
-            base.Use();
+            currentValue = SkillsManager.Instance.AllySpawnRate;
         }
     }
 }

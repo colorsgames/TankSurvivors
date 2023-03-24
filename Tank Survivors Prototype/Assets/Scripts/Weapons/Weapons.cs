@@ -6,6 +6,7 @@ using UnityEngine.Pool;
 public class Weapons : MonoBehaviour
 {
     [SerializeField] private Transform[] spawnPoint;
+    [SerializeField] private AudioSource source;
 
     public bool Shooting { get { return shooting; } }
 
@@ -45,6 +46,8 @@ public class Weapons : MonoBehaviour
     {
         if (canShoot)
         {
+            source.PlayOneShot(weaponData.shot);
+
             for (int i = 0; i < spawnPoint.Length; i++)
             {
                 GetShell(i);

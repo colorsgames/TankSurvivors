@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3533cab4e1166f94599582472a7c97f7, type: 3}
   m_Name: Enemy_1
   m_EditorClassIdentifier: 
-  spawnObj: {fileID: 4052884325411950984, guid: 866e3c0dde80c4c418c911dd7b4bf35f, type: 3}
+  spawnObj: {fileID: -5576468260130739823, guid: 866e3c0dde80c4c418c911dd7b4bf35f, type: 3}
   type: 1
-  maxCount: 20
+  maxCount: 25
   minKillingForSpawn: 40
   spawnRate: 10
   startSpawnRate: 2

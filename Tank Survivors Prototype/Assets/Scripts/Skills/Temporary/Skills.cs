@@ -37,13 +37,14 @@ namespace TemporarySkills
             }
             else
             {
-                levelTMP.text = LanguageManager.isEng ? engLvl : ruLvl + skillLevelData.level;
+                levelTMP.text = (LanguageManager.isEng ? engLvl : ruLvl) + skillLevelData.level;
             }
         }
 
         public virtual void Use()
         {
             skillLevelData.level++;
+            SoundManager.Instance.PlayButtonClicSound();
             ExperienceManager.Instance.ClosePanel();
         }
     }
